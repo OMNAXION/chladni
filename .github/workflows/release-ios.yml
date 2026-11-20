@@ -39,6 +39,11 @@ on:
         description: "Tag to build, e.g. ios-v1.0.4-15 (empty: the chosen branch as it is)"
         required: false
         type: string
+      testflight:
+        description: "Upload to TestFlight (off: only the sideload IPA on GitHub)"
+        required: false
+        type: boolean
+        default: true
 
 permissions:
   contents: write   # the sideload IPA's GitHub release (ios-v* tags only)
@@ -60,6 +65,8 @@ jobs:
     timeout-minutes: 120
     env:
       TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
+      # Tag pushes always upload; a manual run can skip TestFlight and only publish the IPA.
+      UPLOAD: ${{ github.event_name == 'push' || inputs.testflight }}
     steps:
       - name: Paths
         run: |
@@ -298,6 +305,7 @@ jobs:
       # destination=upload in the export options: this signs for distribution and uploads to App
       # Store Connect in one go (no altool / Transporter step).
       - name: Export and upload to App Store Connect
+        if: env.UPLOAD == 'true'
         env:
           ASC_ISSUER: ${{ secrets.APPLE_API_ISSUER_ID }}
         run: |
