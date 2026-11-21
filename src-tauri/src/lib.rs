@@ -872,7 +872,7 @@ pub fn run() {
             if let Some(layout) = gtk::Settings::default()
                 .and_then(|s| gtk::prelude::GtkSettingsExt::gtk_decoration_layout(&s))
             {
-                let _ = commands::BUTTON_LAYOUT.set(layout.into());
+                let _ = encore_core::api::BUTTON_LAYOUT.set(layout.into());
             }
 
             // App data dir for the SQLite file and mpv's on-disk audio cache (`Host::cache_dir`).
