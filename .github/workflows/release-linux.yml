@@ -163,8 +163,9 @@ jobs:
           for f in "$APPDIR"/usr/lib/*.so* "$APPDIR"/usr/lib64/*.so* \
                    "$APPDIR"/usr/lib/gstreamer-1.0/*.so "$APPDIR"/usr/bin/*; do
             [ -e "$f" ] || continue
-            objdump -p "$f" 2>/dev/null | awk '/NEEDED/{print $2}'
+            objdump -p "$f" 2>/dev/null | awk '/NEEDED/{print $2}' || true   # non-ELF files exit nonzero
           done | sort -u > /tmp/needed.txt
+          echo "bundle contents:"; ls "$APPDIR/usr/bin"; wc -l < /tmp/needed.txt
           find "$APPDIR/usr/lib" "$APPDIR/usr/lib64" "$APPDIR/usr/lib/gnutls-fallback" \
             -maxdepth 1 -printf '%f\n' 2>/dev/null | sort -u > /tmp/have.txt || true
           MISSING=""
