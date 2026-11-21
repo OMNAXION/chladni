@@ -22,6 +22,7 @@
 	import CheckCircleIcon from 'phosphor-svelte/lib/CheckCircleIcon';
 	import { thumb } from '$lib/thumb';
 	import { win } from '$lib/win.svelte';
+	import WindowControls from './WindowControls.svelte';
 	import { isWindowDrag } from '$lib/utils';
 	import Icon from '$lib/kit/Icon.svelte';
 	import IconButton from '$lib/kit/IconButton.svelte';
@@ -679,8 +680,8 @@
 		</div>
 	</div>
 
-	<!-- Right: What's New bell, avatar menu -->
-	<div class="flex items-center gap-2 pr-2">
+	<!-- Right: What's New bell, avatar menu, then (Windows/Linux) the window buttons in the corner -->
+	<div class="flex items-center gap-2 self-stretch pr-2">
 		<Tooltip text="What's New" side="bottom">
 			{#snippet trigger(props)}
 				<button
@@ -718,5 +719,6 @@
 				</button>
 			{/snippet}
 		</Tooltip>
+		<WindowControls />
 	</div>
 </header>
