@@ -23,6 +23,7 @@
 	import { thumb } from '$lib/thumb';
 	import { win } from '$lib/win.svelte';
 	import WindowControls from './WindowControls.svelte';
+	import { keyCap } from '$lib/shortcuts';
 	import { isWindowDrag } from '$lib/utils';
 	import Icon from '$lib/kit/Icon.svelte';
 	import IconButton from '$lib/kit/IconButton.svelte';
@@ -519,7 +520,7 @@
 					</button>
 				{:else if focused}
 					<span class="mr-3 flex gap-1 text-xs text-text-subdued">
-						<span class="kbd !h-5 !min-w-5 !text-xs !leading-4">⌘</span><span class="kbd !h-5 !min-w-5 !text-xs !leading-4">K</span>
+						<span class="kbd !h-5 !min-w-5 !text-xs !leading-4">{keyCap('⌘')}</span><span class="kbd !h-5 !min-w-5 !text-xs !leading-4">K</span>
 					</span>
 				{/if}
 				<span class="h-6 w-px bg-text-subdued/60"></span>

@@ -993,7 +993,11 @@ pub fn run() {
                 });
             }
 
-            // Native menu bar (menu.rs). UI items reach the page as `menu://<id>` events.
+            // Native menu bar (menu.rs), macOS only: Spotify on Windows has no menu bar, and a
+            // Tauri menu there would draw a strip under the title bar. Off macOS the page binds the
+            // same shortcuts itself (shortcuts.ts, `native` false). UI items reach the page as
+            // `menu://<id>` events.
+            #[cfg(target_os = "macos")]
             match menu::build(&handle) {
                 Ok(m) => {
                     if let Err(e) = app.set_menu(m) {
