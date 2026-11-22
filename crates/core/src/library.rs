@@ -2551,14 +2551,14 @@ pub async fn lib_migrate_legacy(state: &AppState, blob: Value) -> R<MigrationRep
     Ok(out)
 }
 
-/// Write the export zip to `path`, or to `~/Downloads/Spotless Library <date>.zip` when none given.
+/// Write the export zip to `path`, or to `~/Downloads/Chladni Library <date>.zip` when none given.
 pub async fn lib_export(state: &AppState, path: Option<String>) -> R<ExportReport> {
     let now = now_secs();
     let path = match path {
         Some(p) => std::path::PathBuf::from(p),
         None => {
             let dir = state.host.download_dir().ok_or("no Downloads folder")?;
-            dir.join(format!("Spotless Library {}.zip", &iso8601(now)[..10]))
+            dir.join(format!("Chladni Library {}.zip", &iso8601(now)[..10]))
         }
     };
     let blocked = serde_json::to_value(crate::blocked::list(&state.db)).unwrap_or(Value::Null);

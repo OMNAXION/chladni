@@ -290,12 +290,12 @@ impl EncoreCore {
         encore_core::loopback::check_proxies(&reason)
     }
 
-    /// Debug hook (`spotless://debug?audio=kill-proxy`): close both proxy listeners as iOS would.
+    /// Debug hook (`chladni://debug?audio=kill-proxy`): close both proxy listeners as iOS would.
     pub fn debug_kill_proxies(&self) {
         encore_core::loopback::kill_proxies();
     }
 
-    /// Debug hook (`spotless://debug?audio=kill-proxy-on-load`): kill the audio proxy right after
+    /// Debug hook (`chladni://debug?audio=kill-proxy-on-load`): kill the audio proxy right after
     /// the next stream URL is handed to mpv, so the load itself is refused.
     pub fn debug_kill_proxy_on_load(&self) {
         encore_core::audioproxy::KILL_ON_NEXT_LOAD.store(true, std::sync::atomic::Ordering::SeqCst);

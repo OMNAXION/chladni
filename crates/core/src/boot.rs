@@ -34,7 +34,7 @@ impl std::fmt::Display for Fatal {
 pub fn open_db(data_dir: &Path) -> Result<Arc<Db>, Fatal> {
     let (db, quarantined) = Db::open_or_quarantine(&data_dir.join("encore.sqlite")).map_err(|e| {
         Fatal {
-            title: "Spotless could not open or create its database",
+            title: "Chladni could not open or create its database",
             detail: format!("{}: {e}", data_dir.display()),
         }
     })?;
@@ -117,7 +117,7 @@ pub fn assemble(
     let visitor_for_prewarm = visitor_data.clone();
     let session = Session { locale: Locale::default(), visitor_data, data_sync_id, cookie };
     let it = InnerTube::new(session, proxy).map_err(|e| Fatal {
-        title: "Spotless could not start its network client",
+        title: "Chladni could not start its network client",
         detail: e.to_string(),
     })?;
     // Shelf titles, mood chips and playlist subtitles are YouTube's text, so the UI's
@@ -132,7 +132,7 @@ pub fn assemble(
     let clients = Clients::bundled();
 
     let mut player = Player::new(&cache_dir.to_string_lossy()).map_err(|e| Fatal {
-        title: "Spotless could not load libmpv, which it uses to play audio",
+        title: "Chladni could not load libmpv, which it uses to play audio",
         detail: format!(
             "{e}. On Linux, install your distribution's mpv library \
              (Fedora: mpv-libs, Debian/Ubuntu: libmpv2)."
@@ -149,7 +149,7 @@ pub fn assemble(
     player.set_crossfade(state::saved_crossfade(&db));
     crate::audio::apply_saved(&player, &db); // stream: audio (EQ + output device)
     let events = player.take_events().ok_or_else(|| Fatal {
-        title: "Spotless could not start its audio event loop",
+        title: "Chladni could not start its audio event loop",
         detail: "the player's event channel was already taken, which is a bug".into(),
     })?;
 

@@ -1,6 +1,6 @@
 // Share (Spotify iOS: Share in every sheet and in Now Playing → the system share sheet).
-// The shared item is the music.youtube.com link, which opens for anyone; a "Copy Spotless link"
-// activity copies the spotless:// link, which opens the same screen in Spotless (Links.swift).
+// The shared item is the music.youtube.com link, which opens for anyone; a "Copy Chladni link"
+// activity copies the chladni:// link, which opens the same screen in Chladni (Links.swift).
 import SwiftUI
 import UIKit
 
@@ -50,7 +50,7 @@ struct ShareLinks: Equatable {
         s.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed.subtracting(CharacterSet(charactersIn: "/?#"))) ?? s
     }
     private static func encore(_ host: String, _ id: String?) -> URL {
-        URL(string: "spotless://\(host)\(id.map { "/" + esc($0) } ?? "")")!
+        URL(string: "chladni://\(host)\(id.map { "/" + esc($0) } ?? "")")!
     }
 }
 
@@ -65,12 +65,12 @@ final class ShareItemSource: NSObject, UIActivityItemSource {
     func activityViewController(_ c: UIActivityViewController, subjectForActivityType t: UIActivity.ActivityType?) -> String { title }
 }
 
-/// "Copy Spotless link": the spotless:// link to the same screen.
+/// "Copy Chladni link": the chladni:// link to the same screen.
 final class CopyEncoreLinkActivity: UIActivity {
     let link: URL
     init(link: URL) { self.link = link }
-    override var activityType: UIActivity.ActivityType? { .init("app.spotlessmusic.ios.copy-link") }
-    override var activityTitle: String? { "Copy Spotless link" }
+    override var activityType: UIActivity.ActivityType? { .init("studio.chladni.ios.copy-link") }
+    override var activityTitle: String? { "Copy Chladni link" }
     override var activityImage: UIImage? { UIImage(systemName: "link") }
     override class var activityCategory: UIActivity.Category { .action }
     override func canPerform(withActivityItems items: [Any]) -> Bool { true }
@@ -94,7 +94,7 @@ enum ShareSheet {
         vc.excludedActivityTypes = [.assignToContact, .addToReadingList, .saveToCameraRoll, .print]
         vc.completionWithItemsHandler = { type, done, _, _ in
             guard done else { return }
-            if type == .copyToPasteboard || type?.rawValue == "app.spotlessmusic.ios.copy-link" {
+            if type == .copyToPasteboard || type?.rawValue == "studio.chladni.ios.copy-link" {
                 Task { @MainActor in app.showToast("Link copied") }
             }
         }

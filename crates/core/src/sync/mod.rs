@@ -646,8 +646,8 @@ static ENGINE: OnceLock<Arc<Engine>> = OnceLock::new();
 /// Start sync for the app: install the change log, start the loop, and, when paired, the LAN
 /// server. Called from `boot::start_services` after every module made its tables.
 pub fn start(state: &Arc<crate::state::AppState>) {
-    let mailbox = relay::Mailbox::http(relay::default_base());
-    let engine = Engine::new(state.db.clone(), Some(state.host.clone()), Some(mailbox));
+    let mailbox = relay::default_base().map(relay::Mailbox::http);
+    let engine = Engine::new(state.db.clone(), Some(state.host.clone()), mailbox);
     let st = Arc::downgrade(state);
     engine.set_on_applied(move |a| {
         if let Some(st) = st.upgrade() {
@@ -710,7 +710,7 @@ pub async fn sync_start_pairing() -> Result<Value, String> {
     need()?.start_pairing().await
 }
 
-/// Join with the 6-digit `code`, at the address in `qr` (a `spotless://pair` link) or at
+/// Join with the 6-digit `code`, at the address in `qr` (a `chladni://pair` link) or at
 /// `host`/`port` (Bonjour on the phone). With neither, the Mac looks on the LAN by itself.
 pub async fn sync_join(code: Option<String>, qr: Option<String>, host: Option<String>, port: Option<u16>) -> Result<Value, String> {
     let e = need()?;

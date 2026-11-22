@@ -23,8 +23,14 @@ use super::{load_group, upsert_peer, Engine, Group};
 const CHUNK_BYTES: usize = 600_000;
 const TIMEOUT: Duration = Duration::from_secs(15);
 
-pub fn default_base() -> String {
-    std::env::var("SPOTLESS_SYNC_RELAY").unwrap_or_else(|_| "https://opena.tech/api/sync".into())
+/// The mailbox relay to use, if any. This fork ships with NO relay: upstream's opena.tech server is
+/// not ours to use. LAN sync still works. TODO: set the owner's own relay here or via the env var.
+pub fn default_base() -> Option<String> {
+    ["CHLADNI_SYNC_RELAY", "SPOTLESS_SYNC_RELAY"]
+        .iter()
+        .find_map(|k| std::env::var(k).ok())
+        .map(|s| s.trim().to_string())
+        .filter(|s| !s.is_empty())
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]

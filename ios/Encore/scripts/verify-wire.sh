@@ -19,11 +19,11 @@ check() { if eval "$2"; then echo "PASS  $1"; ok=$((ok+1)); else echo "FAIL  $1"
 gt() { awk -v a="$1" -v b="$2" 'BEGIN{exit !(a>b)}'; }
 
 # A fresh install: no restored queue, first-run bootstrap included in the timing.
-xcrun simctl terminate "$SIM" app.spotlessmusic.ios 2>/dev/null
-xcrun simctl uninstall "$SIM" app.spotlessmusic.ios 2>/dev/null
+xcrun simctl terminate "$SIM" studio.chladni.ios 2>/dev/null
+xcrun simctl uninstall "$SIM" studio.chladni.ios 2>/dev/null
 xcrun simctl install "$SIM" "$APP"
 T0=$(date +%s)
-xcrun simctl launch --console-pty "$SIM" app.spotlessmusic.ios -volume 0 -traceAudio YES \
+xcrun simctl launch --console-pty "$SIM" studio.chladni.ios -volume 0 -traceAudio YES \
   -deeplink "encore://playsearch?q=${Q// /%20}" >> "$LOG" 2>&1 &
 LPID=$!
 for i in {1..60}; do grep -q "paused=0" "$LOG" && break; sleep 1; done
@@ -54,7 +54,7 @@ check "remote play command → playing" '[[ "$(field paused)" == 0 ]]'
 note media-reset; sleep 5; m1=$(pos); sleep 4; m2=$(pos)
 check "media services reset → rebuilt, still playing ($m1 → $m2)" 'gt $(( m2 - m1 )) 3'
 
-xcrun simctl launch "$SIM" app.spotlessmusic.ios >/dev/null 2>&1; sleep 2
+xcrun simctl launch "$SIM" studio.chladni.ios >/dev/null 2>&1; sleep 2
 grep -E "ENCORE_AUDIO (route|interruption|remote|resumed|paused|media|debug|session)" "$LOG" | sed 's/^/  /'
 kill $LPID 2>/dev/null
 echo "$ok passed, $fail failed (log: $LOG)"

@@ -12,7 +12,7 @@ use crate::podcasts::store as pstore;
 use crate::smart::home::{item, shelf, Shelf, ShelfItem};
 use crate::state::AppState;
 
-const UA: &str = "Spotless/1.0";
+const UA: &str = "Chladni/1.0";
 /// Shelves and search change slowly; a book's files never do (the cache table keeps a week).
 /// A TTL of 0 means "don't cache the raw body" (the parsed book page is cached instead).
 const LIST_TTL: i64 = 24 * 3600;

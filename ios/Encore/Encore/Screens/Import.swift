@@ -168,7 +168,7 @@ final class ImportFlow {
     func handle(_ params: [String: String], app: AppModel) {
         reset()
         // encore://import?file=<path>[&step=progress|review|check|done]: the Files-picker path with a known
-        // file (simulator end-to-end with a synthetic export; also "Open in Spotless" from Files).
+        // file (simulator end-to-end with a synthetic export; also "Open in Chladni" from Files).
         if let f = params["file"] {
             let start = ["progress", "review", "check", "done"].contains(params["step"] ?? "")
             autoCreate = params["step"] == "done"
@@ -277,7 +277,7 @@ struct OnboardHeader: View {
     }
 }
 
-/// Where onboarding shows the Spotless logo (the brand mark, 64 pt).
+/// Where onboarding shows the Chladni logo (the brand mark, 64 pt).
 struct OnboardLogoSpot: View {
     var body: some View {
         SpotlessMark(size: 64)
@@ -285,7 +285,7 @@ struct OnboardLogoSpot: View {
 }
 
 /// Spotify's own pages inside the app (SFSafariViewController): the user signs in there
-/// themselves; Spotless never sees the page, its cookies or anything typed into it.
+/// themselves; Chladni never sees the page, its cookies or anything typed into it.
 struct SafariPage: UIViewControllerRepresentable {
     let url: URL
     func makeUIViewController(context: Context) -> SFSafariViewController {
@@ -552,7 +552,7 @@ private struct ImportExportStep: View {
                         .buttonStyle(PressScale())
                         .accessibilityIdentifier("import-open-spotify")
                     }
-                    step(2, "Wait for the email", "It usually takes a few days. You can close Spotless meanwhile.", last: false) { EmptyView() }
+                    step(2, "Wait for the email", "It usually takes a few days. You can close Chladni meanwhile.", last: false) { EmptyView() }
                     step(3, "Choose the file", "Save my_spotify_data.zip from the email to Files, then choose it below.", last: true) { EmptyView() }
                 }
                 if let e = flow.error {

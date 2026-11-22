@@ -123,7 +123,7 @@ async fn raw(db: &crate::db::Db, video_id: &str) -> Value {
             );
             let resp = crate::http::client()
                 .get(&url)
-                .header(reqwest::header::USER_AGENT, "Spotless/1.0")
+                .header(reqwest::header::USER_AGENT, "Chladni/1.0")
                 .timeout(Duration::from_secs(10))
                 .send()
                 .await;

@@ -26,7 +26,7 @@ ok(
 ok(thumb('https://yt3.ggpht.com/y=s176', 400) === 'https://yt3.ggpht.com/y=s400', '=s art too');
 
 // stream: coverfix — Made for you covers: stable names, the cache-buster kept out of the path.
-const dir = '/Users/x/Library/Application Support/app.spotless.desktop/covers/mfy';
+const dir = '/Users/x/Library/Application Support/studio.chladni.desktop/covers/mfy';
 ok(
 	JSON.stringify(localPath(`${dir}/MFY_DAILY_1.svg?v=1794747288123`)) ===
 		JSON.stringify({ path: `${dir}/MFY_DAILY_1.svg`, query: '?v=1794747288123' }),

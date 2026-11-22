@@ -178,9 +178,9 @@ final class NowPlayingArtwork {
 /// The audio trace on disk too (`Library/Caches/Encore/audio.log`, one rollover to `.1` at 512 KB):
 /// on a real phone the stdout console only lives while devicectl launched the process, so a
 /// relaunch from the home screen or the lock screen would leave no `NOWPLAYING` lines. Read with
-/// `devicectl device copy from --domain-type appDataContainer --domain-identifier app.spotlessmusic.ios`.
+/// `devicectl device copy from --domain-type appDataContainer --domain-identifier studio.chladni.ios`.
 enum AudioTraceFile {
-    private static let queue = DispatchQueue(label: "app.spotless.audio-trace")
+    private static let queue = DispatchQueue(label: "studio.chladni.audio-trace")
     private static let url: URL? = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?
         .appendingPathComponent("Encore", isDirectory: true).appendingPathComponent("audio.log")
     private static let stamp: DateFormatter = {

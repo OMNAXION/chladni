@@ -1,5 +1,5 @@
 // Links into the app (stream ios-polish):
-// - spotless:// (or the older encore://) song/<videoId>, encore://add-to-playlist[/<videoId>], encore://share[/<kind>/<id>],
+// - chladni:// (or the older encore://) song/<videoId>, encore://add-to-playlist[/<videoId>], encore://share[/<kind>/<id>],
 //   encore://open?url=<https link>.
 // - Web links, as they arrive from a universal link, a pasted link in Search, or `-deeplink`:
 //   music.youtube.com / youtube.com / youtu.be (watch, playlist, browse/MPRE…, browse/VL…, channel)
@@ -140,12 +140,12 @@ extension Router {
                 app.player.play(page.items, at: i, context: PlayContext(kind: .album, id: id, title: page.title ?? ""))
             }
         case "pair":
-            // spotless://pair?v=1&code=…&addr=… (the QR another device shows, opened by the camera).
+            // chladni://pair?v=1&code=…&addr=… (the QR another device shows, opened by the camera).
             app.router.dismissOverlays()
             let raw = url?.absoluteString ?? ""
             if let qr = CodeEntry.pairLink(in: raw) { app.devices.openJoin(qr: qr) }
         case "link-device":
-            // spotless://link-device[?step=show|enter|scan|success&code=12&error=<core error>]: the
+            // chladni://link-device[?step=show|enter|scan|success&code=12&error=<core error>]: the
             // linking sheet (side menu, Settings; screenshots and tests reach each state).
             let d = app.devices
             switch param("step") {

@@ -51,7 +51,7 @@
 	});
 </script>
 
-<svelte:head><title>Made for you | Spotless</title></svelte:head>
+<svelte:head><title>Made for you | Chladni</title></svelte:head>
 
 {#snippet mfyCard(c: MfyCard)}
 	<Card

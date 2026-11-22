@@ -603,12 +603,12 @@ public protocol EncoreCoreProtocol: AnyObject, Sendable {
     func createPlaylist(name: String?) async throws  -> String
     
     /**
-     * Debug hook (`spotless://debug?audio=kill-proxy`): close both proxy listeners as iOS would.
+     * Debug hook (`chladni://debug?audio=kill-proxy`): close both proxy listeners as iOS would.
      */
     func debugKillProxies() 
     
     /**
-     * Debug hook (`spotless://debug?audio=kill-proxy-on-load`): kill the audio proxy right after
+     * Debug hook (`chladni://debug?audio=kill-proxy-on-load`): kill the audio proxy right after
      * the next stream URL is handed to mpv, so the load itself is refused.
      */
     func debugKillProxyOnLoad() 
@@ -963,7 +963,7 @@ open func createPlaylist(name: String?)async throws  -> String  {
 }
     
     /**
-     * Debug hook (`spotless://debug?audio=kill-proxy`): close both proxy listeners as iOS would.
+     * Debug hook (`chladni://debug?audio=kill-proxy`): close both proxy listeners as iOS would.
      */
 open func debugKillProxies()  {try! rustCall() {
     uniffi_encore_ffi_fn_method_encorecore_debug_kill_proxies(self.uniffiClonePointer(),$0
@@ -972,7 +972,7 @@ open func debugKillProxies()  {try! rustCall() {
 }
     
     /**
-     * Debug hook (`spotless://debug?audio=kill-proxy-on-load`): kill the audio proxy right after
+     * Debug hook (`chladni://debug?audio=kill-proxy-on-load`): kill the audio proxy right after
      * the next stream URL is handed to mpv, so the load itself is refused.
      */
 open func debugKillProxyOnLoad()  {try! rustCall() {
@@ -3039,10 +3039,10 @@ private let initializationResult: InitializationResult = {
     if (uniffi_encore_ffi_checksum_method_encorecore_create_playlist() != 5651) {
         return InitializationResult.apiChecksumMismatch
     }
-    if (uniffi_encore_ffi_checksum_method_encorecore_debug_kill_proxies() != 51363) {
+    if (uniffi_encore_ffi_checksum_method_encorecore_debug_kill_proxies() != 6712) {
         return InitializationResult.apiChecksumMismatch
     }
-    if (uniffi_encore_ffi_checksum_method_encorecore_debug_kill_proxy_on_load() != 60734) {
+    if (uniffi_encore_ffi_checksum_method_encorecore_debug_kill_proxy_on_load() != 34963) {
         return InitializationResult.apiChecksumMismatch
     }
     if (uniffi_encore_ffi_checksum_method_encorecore_invoke() != 43174) {

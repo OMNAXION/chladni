@@ -1,7 +1,7 @@
 <script lang="ts">
 	/**
 	 * Six digit boxes: typing moves on, Backspace moves back, arrows move, and a paste anywhere
-	 * spreads the code over the boxes. Pasting a whole `spotless://pair` link hands it to `onLink`.
+	 * spreads the code over the boxes. Pasting a whole `chladni://pair` link hands it to `onLink`.
 	 * The rules are pure functions in devices.ts (typeInto, backspace).
 	 */
 	import { onMount, tick } from 'svelte';

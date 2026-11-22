@@ -15,7 +15,7 @@ import SwiftUI
 import UIKit
 import os
 
-let audioLog = Logger(subsystem: "app.spotlessmusic.ios", category: "audio")
+let audioLog = Logger(subsystem: "studio.chladni.ios", category: "audio")
 
 /// One line to the unified log and the diagnostics file (`audio.log`), and in Debug builds to stdout
 /// too (`simctl launch --console-pty` in the verify script). Release builds print nothing.

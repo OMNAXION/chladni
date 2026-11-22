@@ -39,7 +39,7 @@
 	function done() {
 		open = false;
 		importOfferDone().catch(() => {});
-		offerWelcome(); // "Using Spotless on your iPhone too?" comes next, once the import is through
+		offerWelcome(); // "Using Chladni on your iPhone too?" comes next, once the import is through
 	}
 
 	/** Close this and let the import dialog take over, reading what was handed in. */

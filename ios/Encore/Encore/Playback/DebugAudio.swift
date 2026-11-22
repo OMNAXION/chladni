@@ -7,7 +7,7 @@
 // Names: interruption-began, interruption-ended-resume, interruption-ended, route-old-unavailable,
 // route-new-available, media-reset, remote-toggle, remote-next, seek-near-end, state, np-dump,
 // kill-proxy, kill-proxy-on-load.
-// On a real phone (no notifyutil): `spotless://debug?audio=<name>` (devicectl --payload-url).
+// On a real phone (no notifyutil): `chladni://debug?audio=<name>` (devicectl --payload-url).
 import AVFoundation
 import SwiftUI
 

@@ -390,8 +390,8 @@ final class VideoStore {
     func stats() -> VideoFrameStats? { engine?.videoStats() }
 
     /// Simulator checks without touching the screen: `-videoAuto 1` switches to the video as soon
-    /// as the playing song has one; `notifyutil -p app.spotless.video.switch` flips the side and
-    /// `app.spotless.video.state` prints it (VIDEO_STATE lines on stdout).
+    /// as the playing song has one; `notifyutil -p studio.chladni.video.switch` flips the side and
+    /// `studio.chladni.video.state` prints it (VIDEO_STATE lines on stdout).
     private func installTestHooks() {
         // `-videoPick <videoId|albumId>`: play that song or video on its own (as a shared link
         // does), or an album from its first track with a music video. Then `-videoAuto`.
@@ -439,7 +439,7 @@ final class VideoStore {
 
     private func installSwitchNotifications() {
         let center = CFNotificationCenterGetDarwinNotifyCenter()
-        for name in ["app.spotless.video.switch", "app.spotless.video.state", "app.spotless.video.pip", "app.spotless.video.fullscreen"] {
+        for name in ["studio.chladni.video.switch", "studio.chladni.video.state", "studio.chladni.video.pip", "studio.chladni.video.fullscreen"] {
             CFNotificationCenterAddObserver(center, nil, { _, _, name, _, _ in
                 let n = name?.rawValue as String? ?? ""
                 Task { @MainActor in

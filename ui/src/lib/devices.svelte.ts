@@ -10,7 +10,7 @@ export type PairStep = 'intro' | 'show' | 'enter' | 'success';
 
 export const devices = $state({
 	status: null as SyncStatus | null,
-	/** The linking dialog. `qr`: a `spotless://pair` link to join with at once (deep link). */
+	/** The linking dialog. `qr`: a `chladni://pair` link to join with at once (deep link). */
 	pair: { open: false, step: 'intro' as PairStep, qr: null as string | null, nonce: 0 },
 	/** The first-run "Using Spotless on your iPhone too?" screen. */
 	welcome: false,
@@ -52,7 +52,7 @@ export async function refreshDevices() {
 	return devices.status;
 }
 
-/** Open the linking dialog: at a step, or joining with a QR link (`spotless://pair?…`). */
+/** Open the linking dialog: at a step, or joining with a QR link (`chladni://pair?…`). */
 export function openPairing(opts: { step?: PairStep; qr?: string } = {}) {
 	devices.pair = {
 		open: true,

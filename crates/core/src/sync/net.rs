@@ -368,11 +368,11 @@ pub fn peer_addr(p: &Peer) -> Option<String> {
     Some(join_addr(p.addr.as_deref()?, p.port?))
 }
 
-/// What the QR code holds: `spotless://pair?v=1&code=…&addr=ip:port,…&dev=…&name=…`.
+/// What the QR code holds: `chladni://pair?v=1&code=…&addr=ip:port,…&dev=…&name=…`.
 pub fn qr_payload(code: &str, addrs: &[String], port: u16, dev: &str, name: &str) -> String {
     let addr: Vec<String> = addrs.iter().map(|a| join_addr(a, port)).collect();
     format!(
-        "spotless://pair?v=1&code={code}&addr={}&dev={dev}&name={}",
+        "chladni://pair?v=1&code={code}&addr={}&dev={dev}&name={}",
         urlencoding::encode(&addr.join(",")),
         urlencoding::encode(name)
     )
@@ -386,7 +386,7 @@ pub struct Qr {
 }
 
 pub fn parse_qr(s: &str) -> Option<Qr> {
-    let q = s.trim().strip_prefix("spotless://pair?")?;
+    let q = s.trim().strip_prefix("chladni://pair?")?;
     let mut code = None;
     let mut addrs = Vec::new();
     let mut dev = None;

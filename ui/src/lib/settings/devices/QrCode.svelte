@@ -1,6 +1,6 @@
 <script lang="ts">
 	/**
-	 * The linking QR (a `spotless://pair` link): dark modules on a white rounded card, one SVG path,
+	 * The linking QR (a `chladni://pair` link): dark modules on a white rounded card, one SVG path,
 	 * drawn from `uqr`'s matrix so it stays crisp at any zoom.
 	 */
 	import { encode } from 'uqr';

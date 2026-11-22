@@ -1,6 +1,6 @@
 // Lane P1: "Go to … radio" opens the radio as a page (SYNC-GAPS §2; the desktop's
 // `routes/radio/[kind]/[id]`, lane magic-d1). Nothing plays and the queue is left alone until you
-// press Play. Header "<Seed> Radio", "With A, B, C and more", Spotless, the song count; the cover
+// press Play. Header "<Seed> Radio", "With A, B, C and more", Chladni, the song count; the cover
 // is the seed's art in a circle on its own colour with "RADIO" under it. Play / Shuffle / Save / ···.
 // Data: `radio_tracks` (the same radio `start_radio` plays).
 import SwiftUI
@@ -57,7 +57,7 @@ struct RadioView: View {
 
     var body: some View {
         EntityScaffold(title: title, artURL: art, isPlayingThis: playingThis, onPlay: onPlay) { off in
-            EntityHeader(offset: off, cover: AnyView(cover), title: title, owner: "Spotless", ownerArt: nil,
+            EntityHeader(offset: off, cover: AnyView(cover), title: title, owner: "Chladni", ownerArt: nil,
                          ownerBadge: AnyView(SpotlessMark(size: 24)), meta: meta, description: page?.description,
                          actions: AnyView(actionIcons), playing: playingThis && !app.player.paused,
                          onShuffle: { play(nil, shuffle: true) }, shuffleOn: playingThis && app.player.shuffle, onPlay: onPlay)
@@ -81,7 +81,7 @@ struct RadioView: View {
         .artAccent(art, into: $accent)
         .task(id: "\(kind):\(id)#\(attempt)") { await load() }
         .sheet(isPresented: $moreOpen) {
-            RadioMoreSheet(title: title, art: art, subtitle: page?.description ?? "Spotless", rows: moreRows)
+            RadioMoreSheet(title: title, art: art, subtitle: page?.description ?? "Chladni", rows: moreRows)
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
                 .presentationBackground { SheetGlass() }

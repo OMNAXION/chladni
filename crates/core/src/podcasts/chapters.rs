@@ -76,7 +76,7 @@ pub struct Chapters {
 
 const FOUND_TTL: i64 = 7 * 86_400;
 const MISS_TTL: i64 = 86_400;
-const UA: &str = "Spotless/1.0 (podcast player; +https://github.com/fjenn/spotless)";
+const UA: &str = "Chladni/1.0 (podcast player)";
 /// A chapters JSON file is a few KB; this only stops a hostile URL.
 const MAX_JSON_BYTES: usize = 2 * 1024 * 1024;
 /// Covers an ID3 tag with its artwork in one request most of the time.

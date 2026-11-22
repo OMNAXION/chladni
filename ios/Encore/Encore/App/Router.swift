@@ -108,10 +108,10 @@ final class Router {
     var npShowCards = 0
     /// Bumped when the active tab is re-tapped at its root: screens scroll to top.
     var scrollToTopSerial: [Tab: Int] = [:]
-    /// Deep link `spotless://playlist/<id>?find=<q>&sort=<title|artist|album|recent|custom>`: the
+    /// Deep link `chladni://playlist/<id>?find=<q>&sort=<title|artist|album|recent|custom>`: the
     /// playlist page opens with Find in playlist showing (and that query) or in that order.
     var playlistFind: PlaylistFindRequest?
-    /// Deep link `spotless://discography/<artist id>[?filter=albums|singles|compilations]`.
+    /// Deep link `chladni://discography/<artist id>[?filter=albums|singles|compilations]`.
     var discography: DiscographyRequest?
 
     func binding(_ tab: Tab) -> Binding<[Route]> {
@@ -157,9 +157,9 @@ final class Router {
     /// your-episodes, new-episodes, made-for-you, whats-new, folder/<id>, settings[/<page>], import,
     /// sleep, speed, play-episode/<id>[?open=1], playlist/<id>?find=<q>&sort=<order>,
     /// discography/<artist id>[?filter=<chip>]
-    /// The app's own URL schemes: `spotless`, and `encore` from before the rename (kept so older
+    /// The app's own URL schemes: `chladni`, and `encore` from before the rename (kept so older
     /// links, shares and tests keep opening).
-    static let appSchemes: Set<String> = ["spotless", "encore"]
+    static let appSchemes: Set<String> = ["chladni", "encore"]
 
     func handle(_ url: URL, app: AppModel) {
         guard let scheme = url.scheme?.lowercased(), Router.appSchemes.contains(scheme) else { openWebLink(url, app: app); return }
@@ -257,7 +257,7 @@ final class Router {
         case "lyrics": nowPlayingOpen = true; lyricsOpen = true
         case "create": app.sheet = .create
         case "debug":
-            // spotless://debug?audio=<DebugAudio name>: fire it without the menu (on-device checks).
+            // chladni://debug?audio=<DebugAudio name>: fire it without the menu (on-device checks).
         #if DEBUG
             if let a = param("audio").flatMap(DebugAudio.Action.init(rawValue:)) { DebugAudio.fire(a) } else { debugOpen = true }
         #else

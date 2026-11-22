@@ -101,7 +101,6 @@
 		99B6F4C6DD06AB450A5B08A6 /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68443817EFABF1A7DA3A364A /* Stores.swift */; };
 		9BD2FBA9F9213D04E2557804 /* GestureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666A9D1B2AF541230C0B1872 /* GestureTests.swift */; };
 		9CE964CC12F55CA83F848881 /* VideoSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75429A5D6719631D7B145CBA /* VideoSurface.swift */; };
-		9DDFACA2744C77825DA93416 /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 6B3E775A75EEB6E772786D20 /* fixtures */; };
 		9F74C7D2016C665DA24F3244 /* FriendlyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5256172D2C393C1AC2F677 /* FriendlyError.swift */; };
 		A23E45AA899AD554C687BE16 /* Figtree-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50A5B60AA3272D7CADCF3B31 /* Figtree-Bold.ttf */; };
 		A6DAA02EAF86166ACAE27DE3 /* MiniPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6CE0E0954B89B9A1D70DA8 /* MiniPlayer.swift */; };
@@ -155,6 +154,7 @@
 		F063F6BF39739B08770E0954 /* VideoPiP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5A3F95AE5A997C913C24E /* VideoPiP.swift */; };
 		F4100FD8441EF81F030037D0 /* InstantFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1E3D76AF60F514B097CFB8 /* InstantFlowTests.swift */; };
 		F69FF9083DA63CA43C7BA58B /* NowPlayingVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41590E7B29791B143B47303 /* NowPlayingVideo.swift */; };
+		F8139F39028B3671AAEE8E99 /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 1E9B2B4E09F006046AC57662 /* fixtures */; };
 		F83A43775AC543E78CC355AB /* LibrarySettingsFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA93213082867C7718E9E506 /* LibrarySettingsFlowTests.swift */; };
 		F98169FA8FA1094319AB9D6A /* EncoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17A25CA0297C42746F98AF /* EncoreApp.swift */; };
 		FE98EA33167B3095870AF633 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CC48691124EF70FFAAD554 /* History.swift */; };
@@ -200,6 +200,7 @@
 		1D16C27C4C52FD8A5DB664F2 /* SmartSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartSnapshotTests.swift; sourceTree = "<group>"; };
 		1D7B7B60CC769B16571D33E9 /* SnapshotSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotSupport.swift; sourceTree = "<group>"; };
 		1DDF9FA166CAB491C1553C30 /* Folders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folders.swift; sourceTree = "<group>"; };
+		1E9B2B4E09F006046AC57662 /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fixtures; path = ../../ui/src/lib/devmock/fixtures; sourceTree = SOURCE_ROOT; };
 		1F4F3B2330EA6E326CA0EC78 /* PlaylistEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistEdit.swift; sourceTree = "<group>"; };
 		1F858DF691D2CB1B64F57C50 /* DownloadKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadKeeper.swift; sourceTree = "<group>"; };
 		2067FD387D9450C965543F90 /* HardeningFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardeningFlowTests.swift; sourceTree = "<group>"; };
@@ -243,7 +244,6 @@
 		68443817EFABF1A7DA3A364A /* Stores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stores.swift; sourceTree = "<group>"; };
 		688591C2C90F25B0B7D03993 /* Audiobooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audiobooks.swift; sourceTree = "<group>"; };
 		6A3976E55B0849601D90F5B9 /* EqCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqCurve.swift; sourceTree = "<group>"; };
-		6B3E775A75EEB6E772786D20 /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fixtures; path = ../../ui/src/lib/devmock/fixtures; sourceTree = SOURCE_ROOT; };
 		6B4D71B906A735884934171B /* DeviceSyncSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSyncSnapshotTests.swift; sourceTree = "<group>"; };
 		6BD84AED4FCE6BAF239331C1 /* SyncDriftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncDriftTests.swift; sourceTree = "<group>"; };
 		6E1E3D76AF60F514B097CFB8 /* InstantFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantFlowTests.swift; sourceTree = "<group>"; };
@@ -362,6 +362,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		068499DE986146AAFC69050F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				79BD4F61DB801C33345F8B8E /* devmock */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		20B10D8B047A02C5AC994163 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				068499DE986146AAFC69050F /* lib */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		25A67F868156D7865B7A3F27 /* Shell */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +399,14 @@
 			name = Packages;
 			sourceTree = "<group>";
 		};
+		38265B1AE2E356C36EB9A01B /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				20B10D8B047A02C5AC994163 /* src */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		3D7CDAAAB6C176FD267FE5A7 /* Playback */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,14 +419,6 @@
 				75429A5D6719631D7B145CBA /* VideoSurface.swift */,
 			);
 			path = Playback;
-			sourceTree = "<group>";
-		};
-		48C67676F69837EC3712704E /* src */ = {
-			isa = PBXGroup;
-			children = (
-				93E06E5FF06269617F996C0E /* lib */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		51BF4AA7F6BBADEC3A6E23E2 /* Core */ = {
@@ -443,10 +459,10 @@
 			path = EncoreE2ETests;
 			sourceTree = "<group>";
 		};
-		688808430CCEE2B7AA3AA343 /* devmock */ = {
+		79BD4F61DB801C33345F8B8E /* devmock */ = {
 			isa = PBXGroup;
 			children = (
-				6B3E775A75EEB6E772786D20 /* fixtures */,
+				1E9B2B4E09F006046AC57662 /* fixtures */,
 			);
 			path = devmock;
 			sourceTree = "<group>";
@@ -550,23 +566,6 @@
 			path = EncoreTests;
 			sourceTree = "<group>";
 		};
-		92A7F3E0A5B639B5FFDF6F5B /* app */ = {
-			isa = PBXGroup;
-			children = (
-				C220029DF0BD20951F30C0D3 /* ui */,
-			);
-			name = app;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		93E06E5FF06269617F996C0E /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				688808430CCEE2B7AA3AA343 /* devmock */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		9D3D3B8EA95EF92661F69CEC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,22 +588,23 @@
 		AFEC833D11883790D786AB1B = {
 			isa = PBXGroup;
 			children = (
-				92A7F3E0A5B639B5FFDF6F5B /* app */,
 				C2F7ED5F69ACFC06E782C40B /* Encore */,
 				5C2DB2368021533065C61699 /* EncoreE2ETests */,
 				8974BF40B9CA8F2B6D3F82C5 /* EncoreTests */,
 				FA2F6D6FE900507E8C764CAC /* EncoreUITests */,
 				2990624E76C7AF792B415F5A /* Packages */,
+				B5E33CC78653B812AB633035 /* spotless-own */,
 				C3474C5C54BF2E11EE4D4459 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C220029DF0BD20951F30C0D3 /* ui */ = {
+		B5E33CC78653B812AB633035 /* spotless-own */ = {
 			isa = PBXGroup;
 			children = (
-				48C67676F69837EC3712704E /* src */,
+				38265B1AE2E356C36EB9A01B /* ui */,
 			);
-			path = ui;
+			name = "spotless-own";
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		C2F7ED5F69ACFC06E782C40B /* Encore */ = {
@@ -771,7 +771,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					6C1181EB316491C4C09D0F7F = {
 						DevelopmentTeam = "";
@@ -832,7 +832,7 @@
 				E4FE2C9A16155D19D1C8778C /* Figtree-Regular.ttf in Resources */,
 				086B06AFCF5B2A2A2072F3B4 /* Figtree-SemiBold.ttf in Resources */,
 				E913613F4146E2DC735C8D4E /* PrivacyInfo.xcprivacy in Resources */,
-				9DDFACA2744C77825DA93416 /* fixtures in Resources */,
+				F8139F39028B3671AAEE8E99 /* fixtures in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1012,7 +1012,7 @@
 /* Begin PBXTargetDependency section */
 		6D83395F6EE621259D83F403 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = "TEMP_9E1D40A1-9CE8-400D-A3C3-6E27C6B688EC" /* EncoreCore */;
+			productRef = "TEMP_9DA0BDE5-1AF0-4BE0-9A20-F2EA776CAA8D" /* EncoreCore */;
 		};
 		94512C258C9BBE99DD393369 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1067,7 +1067,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1081,7 +1081,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 0.1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1100,11 +1100,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Encore/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Chladni;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.spotlessmusic.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.chladni.ios;
 				PRODUCT_NAME = Encore;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1146,7 +1147,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1166,7 +1167,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 0.1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1188,7 +1189,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.spotless.EncoreTests;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.chladni.EncoreTests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Encore.app/Encore";
@@ -1205,7 +1206,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.spotless.EncoreUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.chladni.EncoreUITests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Encore;
@@ -1222,7 +1223,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.spotless.EncoreUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.chladni.EncoreUITests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Encore;
@@ -1239,7 +1240,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.spotless.EncoreTests;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.chladni.EncoreTests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Encore.app/Encore";
@@ -1254,11 +1255,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Encore/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Chladni;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.spotlessmusic.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.chladni.ios;
 				PRODUCT_NAME = Encore;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1275,7 +1277,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.spotless.EncoreE2ETests;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.chladni.EncoreE2ETests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Encore;
@@ -1292,7 +1294,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.spotless.EncoreE2ETests;
+				PRODUCT_BUNDLE_IDENTIFIER = studio.chladni.EncoreE2ETests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Encore;
@@ -1377,7 +1379,7 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = EncoreCore;
 		};
-		"TEMP_9E1D40A1-9CE8-400D-A3C3-6E27C6B688EC" /* EncoreCore */ = {
+		"TEMP_9DA0BDE5-1AF0-4BE0-9A20-F2EA776CAA8D" /* EncoreCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = EncoreCore;
 		};

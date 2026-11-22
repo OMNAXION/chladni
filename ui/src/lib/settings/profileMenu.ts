@@ -1,6 +1,6 @@
 import { combo } from '$lib/shortcuts';
 // The top-bar avatar menu (settings.md "Avatar menu", audit 31): Spotify's text-only list, ≈196px.
-// No account is needed for anything: the profile is the local "Spotless" one, and YouTube Music
+// No account is needed for anything: the profile is the local "Chladni" one, and YouTube Music
 // sign-in is an optional extra at the bottom. Stream p-settings owns the content; TopBar opens it.
 import { goto } from '$app/navigation';
 import * as api from '$lib/api';
@@ -14,7 +14,7 @@ import { W } from '$lib/devices';
 export function profileMenuEntries(): MenuEntry[] {
 	const account = auth.account;
 	return [
-		{ type: 'heading', label: account?.signedIn && account.name ? `Spotless · ${account.name}` : 'Spotless · Local profile' },
+		{ type: 'heading', label: account?.signedIn && account.name ? `Chladni · ${account.name}` : 'Chladni · Local profile' },
 		{ label: 'Listening stats', onSelect: () => goto('/stats') },
 		{ label: 'Recently played', onSelect: () => goto('/history') },
 		{ label: 'Import from Spotify', onSelect: importFromSpotify },

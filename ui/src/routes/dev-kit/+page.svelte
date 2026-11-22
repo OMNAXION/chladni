@@ -32,7 +32,7 @@
 </script>
 
 <StickyHeader title="No skip songs" tint={tint?.color} {sentinel} onPlay={() => {}} />
-<PageHeader type="Playlist" title="No skip songs" image={thumbnail} bind:tintOut={tint} owner={{ name: 'Spotless' }} details="30 songs, 1 hr 32 min" />
+<PageHeader type="Playlist" title="No skip songs" image={thumbnail} bind:tintOut={tint} owner={{ name: 'Chladni' }} details="30 songs, 1 hr 32 min" />
 <ActionBar bind:sentinel tint={tint?.rgb} onPlay={() => {}} {shuffle} onShuffle={() => (shuffle = !shuffle)} onMore={(e) => openItemMenu(e, item)}>
 	<div class="px-[var(--content-spacing)]">
 		<TrackTable {tracks} variant="playlist" context={{ id: item.id, title: item.title }} menuContext={{ playlistId: item.id }} stickyTop={64} bleed="var(--content-spacing)" bind:selected />

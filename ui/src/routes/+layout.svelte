@@ -141,7 +141,7 @@
 	// Window title: "Track • Artist" while playing.
 	$effect(() => {
 		const n = playback.now;
-		document.title = n && !playback.paused ? `${n.title} • ${n.artists}` : 'Spotless';
+		document.title = n && !playback.paused ? `${n.title} • ${n.artists}` : 'Chladni';
 	});
 
 	onMount(() => {

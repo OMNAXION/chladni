@@ -50,7 +50,7 @@ private struct AccountSettings: View {
             }
         }
         .padding(.horizontal, Space.gutter).padding(.vertical, Space.s)
-        SettingsNote(text: "Spotless works without an account. Your library, likes and history are stored on this iPhone.")
+        SettingsNote(text: "Chladni works without an account. Your library, likes and history are stored on this iPhone.")
         SettingsHeader(title: "YouTube account")
         if store.signedIn {
             HStack(spacing: Space.m) {
@@ -74,7 +74,7 @@ private struct AccountSettings: View {
                 Task { store.identities = (try? await app.core.asAccount?.accountIdentities()) ?? []; store.signInOpen = true }
             }
         } else {
-            SettingsNote(text: "Optional. Sign in to bring your YouTube Music likes, playlists and subscriptions. You sign in on Google's own page; Spotless never sees your password.")
+            SettingsNote(text: "Optional. Sign in to bring your YouTube Music likes, playlists and subscriptions. You sign in on Google's own page; Chladni never sees your password.")
             pill("Sign in to YouTube Music", id: "youtube-signin") { store.signInOpen = true }
         }
         SettingsHeader(title: "Import and export")
@@ -203,7 +203,7 @@ private struct PrivacySettings: View {
         SettingsToggleRow(title: "Private session", subtitle: "Plays in a private session don't shape your Home, Made for you or Recently played.",
                           isOn: Binding(get: { s.smart.privateSession }, set: { s.setPrivateSession($0) }))
         SettingsHeader(title: "Listening history")
-        SettingsNote(text: "Your listening history stays on this iPhone. Spotless uses it only to build Home, Made for you and Smart Shuffle; nothing is sent anywhere.")
+        SettingsNote(text: "Your listening history stays on this iPhone. Chladni uses it only to build Home, Made for you and Smart Shuffle; nothing is sent anywhere.")
         SettingsNavRow(icon: "clock-counter-clockwise", title: "Recents", subtitle: "What you've played lately, and your top artists") {
             app.router.push(.history)
         }
@@ -406,7 +406,7 @@ private struct AboutSettings: View {
             Text(version).font(Typo.font(14)).foregroundStyle(Palette.subdued)
         }
         .padding(.horizontal, Space.gutter).frame(minHeight: 56)
-        SettingsNote(text: "Spotless is free and open source software under the GPL-3.0. No ads, no account.")
+        SettingsNote(text: "Chladni is free and open source software under the GPL-3.0. No ads, no account.")
         SettingsHeader(title: "Credits")
         ForEach(credits, id: \.0) { name, what in
             VStack(alignment: .leading, spacing: 3) {
@@ -419,9 +419,7 @@ private struct AboutSettings: View {
         SettingsNavRow(icon: "file-text", title: "Licenses", subtitle: "Third-party software notices") {
             if let u = URL(string: "https://www.gnu.org/licenses/gpl-3.0.html") { UIApplication.shared.open(u) }
         }
-        SettingsNavRow(icon: "code", title: "Source code", subtitle: "GPL-3.0") {
-            if let u = URL(string: "https://github.com/fjenn") { UIApplication.shared.open(u) }
-        }
+        // TODO: Restore the source-code entry when the owner provides the fork URL.
     }
 }
 

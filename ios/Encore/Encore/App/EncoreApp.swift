@@ -1,4 +1,4 @@
-// Spotless (working name Encore) for iPhone, on the shared Rust core (`RealCoreClient` over UniFFI). Launch arguments:
+// Chladni (working name Encore) for iPhone, on the shared Rust core (`RealCoreClient` over UniFFI). Launch arguments:
 //   -mock                 the devmock-fixture core (UI tests, snapshots; no network, no audio). Debug builds only.
 //   -coreFail             Debug builds: the core "fails to start", for the error screen's UI test
 //   -fail <a,b|*>         with -mock: those store actions fail (`CoreFaults`), for the revert-and-toast tests
@@ -67,11 +67,11 @@ private struct AppRoot: View {
                 let env = ProcessInfo.processInfo.environment
                 if UserDefaults.standard.string(forKey: "deeplink") == nil, env["XCTestConfigurationFilePath"] == nil,
                    !ProcessInfo.processInfo.arguments.contains("-uitest"), await app.shouldOfferImport() {
-                    app.devices.welcomePending = true // "Using Spotless on your Mac too?" once the import closes
+                    app.devices.welcomePending = true // "Using Chladni on your Mac too?" once the import closes
                     app.importOpen = true
                 }
                 // `-deeplink encore://…` launch argument: screenshots and UI tests reach a screen
-                // without the system "Open in Spotless?" prompt that `simctl openurl` triggers.
+                // without the system "Open in Chladni?" prompt that `simctl openurl` triggers.
                 if let link = UserDefaults.standard.string(forKey: "deeplink") {
                     for part in link.components(separatedBy: " ") {
                         if let u = URL(string: part) { app.router.handle(u, app: app); try? await Task.sleep(nanoseconds: 700_000_000) }
@@ -187,7 +187,7 @@ struct CoreStartFailedView: View {
             Spacer()
             Icon(name: "info", fill: true, size: 56).foregroundStyle(Palette.subdued)
                 .padding(.bottom, Space.s)
-            Text("Spotless couldn't start").font(Typo.font(22, .bold)).multilineTextAlignment(.center)
+            Text("Chladni couldn't start").font(Typo.font(22, .bold)).multilineTextAlignment(.center)
                 .accessibilityAddTraits(.isHeader)
                 .accessibilityIdentifier("core-failed-title")
             Text("Your library couldn't be opened. Try again. If it keeps happening, send the diagnostics so we can fix it.")
@@ -208,8 +208,8 @@ struct CoreStartFailedView: View {
             .disabled(retrying)
             .padding(.top, Space.l)
             .accessibilityIdentifier("core-retry")
-            ShareLink(item: Diagnostics.write(failure), subject: Text("Spotless diagnostics"),
-                      message: Text("Spotless couldn't start on my iPhone.")) {
+            ShareLink(item: Diagnostics.write(failure), subject: Text("Chladni diagnostics"),
+                      message: Text("Chladni couldn't start on my iPhone.")) {
                 Text("Send diagnostics").font(Typo.font(15, .bold)).foregroundStyle(Palette.text)
                     .padding(.horizontal, 24).frame(height: 44).overlay(Capsule().stroke(Palette.dim))
             }
@@ -245,7 +245,7 @@ enum Diagnostics {
         let version = "\(info?["CFBundleShortVersionString"] as? String ?? "?") (\(info?["CFBundleVersion"] as? String ?? "?"))"
         let os = ProcessInfo.processInfo.operatingSystemVersionString
         var lines = [
-            "Spotless diagnostics",
+            "Chladni diagnostics",
             "App: \(version)",
             "iOS: \(os)",
             "When: \(ISO8601DateFormatter().string(from: failure.at))",

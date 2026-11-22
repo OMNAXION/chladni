@@ -103,8 +103,8 @@ final class PolishFlowTests: XCTestCase {
         let share = el("np-share")
         XCTAssertTrue(share.waitForExistence(timeout: 8))
         share.tap()
-        // The system share sheet, with our "Copy Spotless link" activity.
-        XCTAssertTrue(app.descendants(matching: .any)["Copy Spotless link"].waitForExistence(timeout: 8))
+        // The system share sheet, with our "Copy Chladni link" activity.
+        XCTAssertTrue(app.descendants(matching: .any)["Copy Chladni link"].waitForExistence(timeout: 8))
     }
 
     /// Real core: create a playlist from the picker, then it shows as Saved in.

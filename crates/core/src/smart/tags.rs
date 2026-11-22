@@ -476,7 +476,7 @@ pub fn library_chips(tracks: &[(String, Vec<&'static str>)]) -> Vec<Chip> {
 
 // ── Sources (network) ──────────────────────────────────────────────────────────────────────────
 
-const UA: &str = concat!("Spotless/", env!("CARGO_PKG_VERSION"), " (desktop music player)");
+const UA: &str = concat!("Chladni/", env!("CARGO_PKG_VERSION"), " (desktop music player)");
 /// Cached answers are kept this long (genres barely move).
 const TTL: i64 = 90 * 24 * 3600;
 

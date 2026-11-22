@@ -125,16 +125,16 @@ final class EntityMagicTests: XCTestCase {
     @MainActor func testEntityDeepLinks() {
         let app = AppModel(core: MockCoreClient(bundle: Bundle(for: AppModel.self)))
         let r = app.router
-        r.handle(URL(string: "spotless://playlist/LOCALPLAYLIST:1?find=daft&sort=title")!, app: app)
+        r.handle(URL(string: "chladni://playlist/LOCALPLAYLIST:1?find=daft&sort=title")!, app: app)
         XCTAssertEqual(r.playlistFind, PlaylistFindRequest(id: "LOCALPLAYLIST:1", query: "daft", sort: .title))
         XCTAssertEqual(r.paths[r.tab]?.last, .playlist("LOCALPLAYLIST:1"))
-        r.handle(URL(string: "spotless://discography/UC123?filter=singles")!, app: app)
+        r.handle(URL(string: "chladni://discography/UC123?filter=singles")!, app: app)
         XCTAssertEqual(r.discography, DiscographyRequest(artistId: "UC123", filter: .singles))
         XCTAssertEqual(r.paths[r.tab]?.last, .artist("UC123"))
-        r.handle(URL(string: "spotless://shelf/recently_played?title=Recents")!, app: app)
+        r.handle(URL(string: "chladni://shelf/recently_played?title=Recents")!, app: app)
         XCTAssertEqual(r.tab, .home)
         XCTAssertEqual(r.paths[.home], [.shelf("recently_played", "Recents")])
-        r.handle(URL(string: "spotless://playlist/LOCALPLAYLIST:2")!, app: app)
+        r.handle(URL(string: "chladni://playlist/LOCALPLAYLIST:2")!, app: app)
         XCTAssertEqual(r.playlistFind?.id, "LOCALPLAYLIST:1", "a plain playlist link asks for nothing")
     }
 

@@ -1,14 +1,14 @@
-//! Links opened from outside the app: the `spotless://` scheme and its older alias `encore://`
+//! Links opened from outside the app: the `chladni://` scheme and its older alias `encore://`
 //! (both registered in Info.plist through `plugins.deep-link` in tauri.conf.json), and https links
-//! from YouTube Music, YouTube and Spotify handed to the app (`open -a Spotless <url>`, Finder "Open With", a second launch with
+//! from YouTube Music, YouTube and Spotify handed to the app (`open -a Chladni <url>`, Finder "Open With", a second launch with
 //! the link in argv).
 //!
 //! Every one ends up where Limusic's `limusic-app <link>` already went (#348): the raw https URL
 //! as an `open-link` event for the page, or in `LAUNCH_ARGS` before the page has mounted. The page
-//! has the one parser (`ytlink.ts`, `isSpotifyLink`), so this only turns `spotless://` forms into
+//! has the one parser (`ytlink.ts`, `isSpotifyLink`), so this only turns `chladni://` forms into
 //! the https link they stand for.
 //!
-//! `spotless://` forms (`encore://` takes the same ones; it was the app's working name and stays
+//! `chladni://` forms (`encore://` takes the same ones; it was the app's working name and stays
 //! registered so older links keep opening):
 //!
 //! | link | opens |
@@ -18,7 +18,7 @@
 //! | `encore://album/<browseId>` | `https://music.youtube.com/browse/<id>` |
 //! | `encore://artist/<channelId>` | `https://music.youtube.com/channel/<id>` |
 //! | `encore://open?url=<https url>` | that URL |
-//! | `spotless://pair?v=1&code=…` | itself: the page opens the device-linking dialog with it (docs/SYNC.md) |
+//! | `chladni://pair?v=1&code=…` | itself: the page opens the device-linking dialog with it (docs/SYNC.md) |
 //! | `encore://music.youtube.com/…`, `encore://open.spotify.com/…` | the same path on https |
 
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -52,14 +52,14 @@ pub fn to_web_link(raw: &str) -> Option<String> {
     }
 }
 
-/// The app's own URL schemes: `spotless`, and `encore` from before the rename.
-pub const APP_SCHEMES: [&str; 2] = ["spotless", "encore"];
+/// The app's own URL schemes: `chladni`, and `encore` from before the rename.
+pub const APP_SCHEMES: [&str; 2] = ["chladni", "encore"];
 
 pub fn is_app_scheme(scheme: &str) -> bool {
     APP_SCHEMES.iter().any(|s| scheme.eq_ignore_ascii_case(s))
 }
 
-/// Whether a launch argument is one of the app's own links (`spotless:…` / `encore:…`).
+/// Whether a launch argument is one of the app's own links (`chladni:…` / `encore:…`).
 pub fn is_app_link(raw: &str) -> bool {
     raw.split_once(':').is_some_and(|(s, _)| is_app_scheme(s))
 }
@@ -83,7 +83,7 @@ fn app_link(url: &tauri::Url) -> Option<String> {
         }
         "album" => Some(format!("https://music.youtube.com/browse/{}", id?)),
         // A device-linking QR: the page joins with it as is (`sync_join { qr }`).
-        "pair" => Some(format!("spotless://pair?{}", url.query()?)),
+        "pair" => Some(format!("chladni://pair?{}", url.query()?)),
         "artist" => Some(format!("https://music.youtube.com/channel/{}", id?)),
         "open" => {
             let target =
@@ -121,7 +121,7 @@ mod tests {
     use super::{is_app_link, to_web_link};
 
     #[test]
-    fn spotless_links_open_the_same_as_the_encore_alias() {
+    fn chladni_links_open_the_same_as_the_encore_alias() {
         for tail in [
             "track/dQw4w9WgXcQ",
             "playlist/VLPL123",
@@ -130,24 +130,24 @@ mod tests {
             "open?url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2Fabc",
             "music.youtube.com/watch?v=abc",
         ] {
-            let new = to_web_link(&format!("spotless://{tail}"));
-            assert!(new.is_some(), "spotless://{tail}");
+            let new = to_web_link(&format!("chladni://{tail}"));
+            assert!(new.is_some(), "chladni://{tail}");
             assert_eq!(new, to_web_link(&format!("encore://{tail}")), "{tail}");
         }
         assert_eq!(
-            to_web_link("spotless://track/dQw4w9WgXcQ").as_deref(),
+            to_web_link("chladni://track/dQw4w9WgXcQ").as_deref(),
             Some("https://music.youtube.com/watch?v=dQw4w9WgXcQ")
         );
         assert_eq!(
-            to_web_link("SPOTLESS://track/abc").as_deref(),
+            to_web_link("CHLADNI://track/abc").as_deref(),
             Some("https://music.youtube.com/watch?v=abc")
         );
-        assert_eq!(to_web_link("spotless://nonsense/x"), None);
+        assert_eq!(to_web_link("chladni://nonsense/x"), None);
         assert_eq!(
             to_web_link("encore://pair?v=1&code=123456&addr=10.0.0.2%3A47615").as_deref(),
-            Some("spotless://pair?v=1&code=123456&addr=10.0.0.2%3A47615")
+            Some("chladni://pair?v=1&code=123456&addr=10.0.0.2%3A47615")
         );
-        assert!(is_app_link("spotless://track/x") && is_app_link("encore://track/x"));
+        assert!(is_app_link("chladni://track/x") && is_app_link("encore://track/x"));
         assert!(!is_app_link("https://music.youtube.com/watch?v=x") && !is_app_link("--autostart"));
     }
 

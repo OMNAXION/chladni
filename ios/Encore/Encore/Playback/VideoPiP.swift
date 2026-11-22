@@ -110,7 +110,7 @@ final class VideoPiP: NSObject {
 
     var possible: Bool { controller?.isPictureInPicturePossible ?? false }
 
-    /// For the simulator check (`notifyutil -p app.spotless.video.pip`): start or stop PiP by hand.
+    /// For the simulator check (`notifyutil -p studio.chladni.video.pip`): start or stop PiP by hand.
     func toggleByHand() {
         guard let c = controller else {
             // No PiP here (the iPhone simulator reports none): run everything but the floating

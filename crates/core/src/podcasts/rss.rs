@@ -9,7 +9,7 @@ use std::time::Duration;
 
 use super::{rss_id, sanitize, Episode, Show, ShowSource};
 
-const UA: &str = "Spotless/1.0 (podcast player; +https://github.com/fjenn/spotless)";
+const UA: &str = "Chladni/1.0 (podcast player)";
 /// Large back catalogues (e.g. 1,500-episode feeds with full notes) run to ~20 MB.
 const MAX_FEED_BYTES: usize = 40 * 1024 * 1024;
 

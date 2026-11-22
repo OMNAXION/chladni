@@ -11,7 +11,7 @@ final class HangWatch: @unchecked Sendable {
     private let lock = NSLock()
     private var stalls: [Double] = []
     private var started = false
-    private let log = Logger(subsystem: "app.spotlessmusic.ios", category: "hang")
+    private let log = Logger(subsystem: "studio.chladni.ios", category: "hang")
 
     /// Stalls over 50 ms since launch: (count, worst ms).
     var summary: (count: Int, worstMs: Int) {

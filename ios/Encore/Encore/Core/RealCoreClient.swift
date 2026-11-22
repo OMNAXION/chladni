@@ -42,7 +42,7 @@ struct AudioCaps: Equatable {
     static let iosDefault = AudioCaps(pitch: false, reverb: false, speed: true, eqFlavor: "portable")
 }
 
-let coreLog = Logger(subsystem: "app.spotlessmusic.ios", category: "core")
+let coreLog = Logger(subsystem: "studio.chladni.ios", category: "core")
 
 /// A core error with the core's message (`CoreError.Failed`).
 struct CoreFailure: LocalizedError {

@@ -38,7 +38,7 @@ export function syncHandlers(emit: (event: string, payload: unknown) => void) {
 		sync_set_active: (a: any) => ((st.active = !!a.active), status()),
 		sync_start_pairing: () => {
 			const code = '482913';
-			const qr = `spotless://pair?v=1&code=${code}&addr=192.168.1.20%3A47615&dev=${st.deviceId}&name=Alex%27s%20MacBook%20Pro`;
+			const qr = `chladni://pair?v=1&code=${code}&addr=192.168.1.20%3A47615&dev=${st.deviceId}&name=Alex%27s%20MacBook%20Pro`;
 			st.pairing = { code, qr, expiresAt: now() + 300 };
 			st.lanPort = 47615;
 			changed();

@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Spotless",
-  "version": "1.0.4-rc.6",
-  "identifier": "app.spotless.desktop",
+  "productName": "Chladni",
+  "version": "0.1.0",
+  "identifier": "studio.chladni.desktop",
   "build": {
     "frontendDist": "../ui/build",
     "devUrl": "http://localhost:5183",
@@ -13,7 +13,7 @@
     "windows": [
       {
         "create": false,
-        "title": "Spotless",
+        "title": "Chladni",
         "width": 1280,
         "height": 832,
         "minWidth": 800,
@@ -43,7 +43,7 @@
       "app",
       "dmg"
     ],
-    "createUpdaterArtifacts": true,
+    "createUpdaterArtifacts": false,
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
@@ -56,15 +56,13 @@
   },
   "plugins": {
     "updater": {
-      "endpoints": [
-        "https://github.com/fjenn/spotless/releases/latest/download/latest.json"
-      ],
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDE5OTBGMjE5NTI0MjJFQzUKUldURkxrSlNHZktRR1N5dFUzRVJ2aVhPS2h1UVJkM0REOWp6aDBFaUVSNHFma1c1RmdPNzdOWEkK"
+      "endpoints": [],
+      "pubkey": ""
     },
     "deep-link": {
       "desktop": {
         "schemes": [
-          "spotless",
+          "chladni",
           "encore"
         ]
       }

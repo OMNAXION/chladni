@@ -1023,7 +1023,7 @@ const handlers: Record<string, (a: Args) => unknown> = {
 		return { ...db.privateSession };
 	},
 	lib_migrate_legacy: () => ({ already: true, saved: 0, pins: 0, recent: 0 }),
-	lib_export: () => ({ path: '~/Downloads/Spotless Library.zip', likedSongs: db.liked.length, playlists: db.playlists.length, files: [] }),
+	lib_export: () => ({ path: '~/Downloads/Chladni Library.zip', likedSongs: db.liked.length, playlists: db.playlists.length, files: [] }),
 
 	// podcasts
 	podcast_search: () => {
@@ -1202,8 +1202,8 @@ const handlers: Record<string, (a: Args) => unknown> = {
 	can_self_update: () => false,
 	open_external: (a) => void window.open(a.url, '_blank', 'noopener'),
 	quit_app: () => null,
-	diagnostics: () => 'Spotless dev mock — no backend',
-	diagnostics_summary: () => 'Spotless dev mock',
+	diagnostics: () => 'Chladni dev mock — no backend',
+	diagnostics_summary: () => 'Chladni dev mock',
 	save_diagnostics: () => null,
 	network_reachable: () => true,
 	log_ui: () => null,
@@ -1230,7 +1230,7 @@ function plugin(cmd: string, a: Args): unknown {
 			if (op === 'get_all_windows') return ['main'];
 			return null;
 		case 'app':
-			return { version: '0.1.0-dev', name: 'Spotless', tauri_version: '2.0.0', identifier: 'app.spotless.desktop' }[op] ?? null;
+			return { version: '0.1.0-dev', name: 'Chladni', tauri_version: '2.0.0', identifier: 'studio.chladni.desktop' }[op] ?? null;
 		case 'updater':
 			return null; // check → no update
 		case 'clipboard-manager':

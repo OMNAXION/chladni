@@ -41,9 +41,10 @@ export function peekHome(): HomeShelf[] | null {
 	const hit = getCached<HomeShelf[]>(HOME_KEY);
 	if (hit) return hit;
 	try {
-		// A Home saved before the Encore → Spotless rename points its cover files into the old data
-		// folder, which the app moved to the new one at launch (src-tauri/src/migrate.rs).
-		const raw = localStorage.getItem(HOME_STORE)?.replaceAll('app.encore.desktop', 'app.spotless.desktop');
+		// Legacy imported Home covers still contain the old app data identifier.
+		const raw = localStorage.getItem(HOME_STORE)
+			?.replaceAll('app.encore.desktop', 'studio.chladni.desktop')
+			.replaceAll('app.spotless.desktop', 'studio.chladni.desktop');
 		const v = raw ? (JSON.parse(raw) as HomeShelf[]) : null;
 		return Array.isArray(v) && v.length ? v : null;
 	} catch {

@@ -8,11 +8,11 @@ import EncoreCore
 
 final class KeychainStore: SecretStore, @unchecked Sendable {
     let service: String
-    /// The service name from before the Encore → Spotless rename: an item missing under `service`
+    /// The older Encore service retained for legacy imports: an item missing under `service`
     /// is read from here once and saved under `service`. Only reachable when the keychain access
     /// group carries over; otherwise it simply finds nothing.
     let legacyService: String?
-    init(service: String = "app.spotlessmusic.ios", legacyService: String? = "app.encore.ios") {
+    init(service: String = "studio.chladni.ios", legacyService: String? = "app.encore.ios") {
         self.service = service
         self.legacyService = legacyService
     }

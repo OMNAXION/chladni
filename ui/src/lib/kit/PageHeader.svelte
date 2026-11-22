@@ -18,7 +18,7 @@
 	 *   tintOut?: Tint          bindable: the tint in use, to feed ActionBar / StickyHeader
 	 *   description?: string    14px #b3b3b3, 2 lines (HTML-free)
 	 *   owner?: { name: string; image?: string; href?: string; logo?: boolean; noAvatar?: boolean }
-	 *                           meta line avatar 24px + bold name; `logo` = Spotless mark (Made for you),
+	 *                           meta line avatar 24px + bold name; `logo` = Chladni mark (Made for you),
 	 *                           `noAvatar` = bold name only (Liked Songs)
 	 *   footer?: Snippet        under the meta line (Made for you: "About recommendations")
 	 *   details?: string        rest of the meta line, #cdcdcd, joined with " • " (e.g. "2018 • 7 songs, 23 min 43 sec")
@@ -174,7 +174,7 @@
 					<Logo size={24} class="mr-1" />
 				{:else if owner.image}
 					<img src={owner.image} alt="" class="mr-1 size-6 rounded-full object-cover" />
-				{:else if owner.name === 'Spotless'}
+				{:else if owner.name === 'Chladni'}
 					<Logo size={24} class="mr-1" />
 				{:else}
 					<span class="mr-1 grid size-6 shrink-0 place-items-center rounded-full bg-bg-elevated-highlight text-text-subdued" aria-hidden="true">

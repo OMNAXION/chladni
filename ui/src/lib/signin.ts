@@ -3,12 +3,12 @@
 
 export type SignInPhase =
 	| { kind: 'idle' }
-	| { kind: 'waiting' } // the Google window is open; Spotless isn't signed in yet
+	| { kind: 'waiting' } // the Google window is open; Chladni isn't signed in yet
 	| { kind: 'failed'; message: string };
 
 export type SignInEvent =
 	| { type: 'start' } // a sign-in button was pressed
-	| { type: 'done' } // `login-done`: Spotless itself is signed in
+	| { type: 'done' } // `login-done`: Chladni itself is signed in
 	| { type: 'picker' } // `account-selection-required`: the channel picker takes over
 	| { type: 'cancelled' } // `login-cancelled`, or Cancel / close on the sheet
 	| { type: 'error'; message: string }; // `login-error`, or the window wouldn't open

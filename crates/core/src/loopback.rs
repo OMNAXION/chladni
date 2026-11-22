@@ -109,7 +109,7 @@ impl Loopback {
         }
     }
 
-    /// Debug hook (`spotless://debug?audio=kill-proxy`): close the listener the way iOS does to a
+    /// Debug hook (`chladni://debug?audio=kill-proxy`): close the listener the way iOS does to a
     /// suspended app, keeping the port on record so the next check finds it dead.
     pub fn kill(&self) {
         if let Ok(bound) = self.bound.lock() {

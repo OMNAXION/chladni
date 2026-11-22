@@ -1,6 +1,6 @@
 name: Encore
 options:
-  bundleIdPrefix: app.spotless
+  bundleIdPrefix: studio.chladni
   deploymentTarget:
     iOS: "17.0"
   createIntermediateGroups: true
@@ -14,8 +14,8 @@ packages:
 settings:
   base:
     SWIFT_VERSION: "5.10"
-    MARKETING_VERSION: "1.0.4"
-    CURRENT_PROJECT_VERSION: "17"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
     DEVELOPMENT_TEAM: ""
     CODE_SIGN_STYLE: Automatic
 targets:
@@ -32,8 +32,9 @@ targets:
       - package: EncoreCore
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: app.spotlessmusic.ios
+        PRODUCT_BUNDLE_IDENTIFIER: studio.chladni.ios
         PRODUCT_NAME: Encore
+        INFOPLIST_KEY_CFBundleDisplayName: Chladni
         INFOPLIST_FILE: Encore/Info.plist
         TARGETED_DEVICE_FAMILY: "1"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

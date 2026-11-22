@@ -3,7 +3,7 @@
 //! The database keeps every row it had; only the cookie text in it is replaced by the marker
 //! [`SEALED`], and the cookie itself lives in a Keychain "generic password" item:
 //!
-//! - service `app.spotless.desktop` (the bundle id, so the items are easy to find in Keychain
+//! - service `studio.chladni.desktop` (the bundle id, so the items are easy to find in Keychain
 //!   Access and stable across versions and rebuilds). Before the rename it was
 //!   `app.encore.desktop` ([`LEGACY_SERVICE`]): an item missing under the new name is read from
 //!   the old one once and saved under the new one ([`Migrating`]);
@@ -22,8 +22,8 @@
 //! app that created it. A Developer ID build's signature stays the same from release to release,
 //! so the item is read silently forever. An ad-hoc signed build (`codesign -s -`, what
 //! `scripts/build-mac.sh` and unsigned releases make) is identified by its exact binary hash, so
-//! after every rebuild or update macOS asks once "Spotless wants to use your confidential
-//! information stored in app.spotless.desktop" (Always Allow covers that binary only). To keep that
+//! after every rebuild or update macOS asks once "Chladni wants to use your confidential
+//! information stored in studio.chladni.desktop" (Always Allow covers that binary only). To keep that
 //! prompt off every dev rebuild, **debug builds don't move cookies into the Keychain** unless
 //! `ENCORE_KEYCHAIN=1` is set; they still read a cookie a release build sealed (one prompt then).
 //! Release builds always use the Keychain. `ENCORE_KEYCHAIN=0` turns it off in any build.
@@ -32,8 +32,8 @@ use std::sync::OnceLock;
 
 /// What SQLite holds in place of a cookie that lives in the Keychain.
 pub const SEALED: &str = "@keychain";
-pub const SERVICE: &str = "app.spotless.desktop";
-/// The Keychain service before the app was renamed from Encore to Spotless.
+pub const SERVICE: &str = "studio.chladni.desktop";
+/// The older Encore Keychain service retained for legacy imports.
 pub const LEGACY_SERVICE: &str = "app.encore.desktop";
 /// The Keychain account of the active session's cookie.
 pub const SESSION: &str = "session_cookie";
@@ -273,7 +273,7 @@ mod tests {
     #[test]
     #[ignore]
     fn keychain_round_trip() {
-        let e = keyring::Entry::new("app.spotless.desktop.selftest", "probe").unwrap();
+        let e = keyring::Entry::new("studio.chladni.desktop.selftest", "probe").unwrap();
         e.set_password("SAPISID=probe; __Secure-3PSID=x").unwrap();
         assert_eq!(e.get_password().unwrap(), "SAPISID=probe; __Secure-3PSID=x");
         e.delete_credential().unwrap();

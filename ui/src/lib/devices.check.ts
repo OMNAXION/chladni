@@ -110,7 +110,7 @@ eq(r.focus, 4, 'and moves past it');
 eq(backspace(['4', '8', '', '', '', ''], 2), { boxes: ['4', '', '', '', '', ''], focus: 1 }, 'backspace in an empty box clears the one before');
 eq(backspace(['4', '8', '', '', '', ''], 1), { boxes: ['4', '', '', '', '', ''], focus: 1 }, 'backspace clears its own box');
 ok(!codeComplete(['4', '8', '', '', '', '']), 'incomplete');
-ok(isPairLink('spotless://pair?v=1&code=1'), 'pair link');
+ok(isPairLink('chladni://pair?v=1&code=1'), 'pair link');
 ok(!isPairLink('482913'), 'a code is not a link');
 
 // --- hint and host outcome ----------------------------------------------------------------------

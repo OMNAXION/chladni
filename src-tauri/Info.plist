@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- Merged into Spotless.app's Info.plist by the Tauri bundler. Device sync (docs/SYNC.md) finds
+<!-- Merged into Chladni.app's Info.plist by the Tauri bundler. Device sync (docs/SYNC.md) finds
      and reaches the iPhone on the local network: macOS 15 asks first and shows this reason. -->
 <plist version="1.0">
 <dict>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>Spotless finds your other devices on this Wi-Fi to link them.</string>
+	<string>Chladni finds your other devices on this Wi-Fi to link them.</string>
 	<key>NSBonjourServices</key>
 	<array>
 		<string>_spotless-sync._tcp</string>

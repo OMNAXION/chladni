@@ -2,7 +2,7 @@
 	/**
 	 * The main window's half of "Sign in to YouTube Music": a dimmed sheet behind the Google
 	 * sign-in window (attached to this one, see src-tauri/src/session.rs), saying what is going on
-	 * and offering Cancel. Closes itself once Spotless is signed in; shows the reason if it isn't.
+	 * and offering Cancel. Closes itself once Chladni is signed in; shows the reason if it isn't.
 	 */
 	import Modal from '$lib/kit/Modal.svelte';
 	import { cancelSignIn, startSignIn, ui } from '$lib/player.svelte';
@@ -22,7 +22,7 @@
 	onClose={cancelSignIn}
 >
 	{#if ui.signIn.kind === 'failed'}
-		<p class="text-sm text-text-subdued">Spotless isn't signed in.</p>
+		<p class="text-sm text-text-subdued">Chladni isn't signed in.</p>
 		<p class="mt-2 text-sm text-white">{ui.signIn.message}</p>
 	{:else}
 		<div class="flex items-center gap-3">
@@ -33,7 +33,7 @@
 			<p class="text-sm text-white">Signing in…</p>
 		</div>
 		<p class="mt-3 text-sm text-text-subdued">
-			Sign in to Google in the window in front. Spotless picks up your YouTube Music account as soon
+			Sign in to Google in the window in front. Chladni picks up your YouTube Music account as soon
 			as you're in, and closes it.
 		</p>
 	{/if}

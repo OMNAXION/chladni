@@ -110,7 +110,7 @@ pub fn open_login(app: AppHandle, state: Arc<AppState>, add_account: bool) {
         let (tx, nudge) = tokio::sync::mpsc::unbounded_channel::<()>();
         let tx2 = tx.clone();
         let builder = WebviewWindowBuilder::new(&app2, LOGIN_LABEL, WebviewUrl::External(url))
-            .title("Sign in to YouTube Music · Spotless")
+            .title("Sign in to YouTube Music · Chladni")
             .inner_size(LOGIN_SIZE.0, LOGIN_SIZE.1)
             .skip_taskbar(true)
             .minimizable(false)
@@ -551,7 +551,7 @@ mod tests {
 }
 
 /// Close the sign-in window and hand focus back to the main window: macOS otherwise activates
-/// whichever app was in front before, as if Spotless had been left.
+/// whichever app was in front before, as if Chladni had been left.
 fn close_login(app: &AppHandle) {
     close(app, LOGIN_LABEL);
     // After the window is really gone: macOS picks the next active app once the destroy lands.

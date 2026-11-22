@@ -16,7 +16,7 @@ struct SyncPeer: Codable, Hashable, Identifiable {
 
 struct SyncPairing: Codable, Hashable {
     var code: String
-    /// The `spotless://pair?…` payload to draw as a QR.
+    /// The `chladni://pair?…` payload to draw as a QR.
     var qr: String
     /// Seconds since 1970.
     var expiresAt: Double
@@ -79,7 +79,7 @@ extension RealCoreClient {
 /// The mock's sync state. `code` is fixed so screenshots are stable.
 struct MockSyncState {
     static let code = "482913"
-    static let qr = "spotless://pair?v=1&code=482913&addr=192.168.1.20%3A47615&dev=5f2c9a7e0b1d4c3a&name=iPhone"
+    static let qr = "chladni://pair?v=1&code=482913&addr=192.168.1.20%3A47615&dev=5f2c9a7e0b1d4c3a&name=iPhone"
     var status = SyncStatus.unlinked
     /// The next `sync_join` fails with this core error (tests, screenshots).
     var joinError: String?
@@ -173,12 +173,12 @@ enum DeviceSyncText {
     static let errorLine = "Can't reach your other device or the sync service right now. Changes will go through when it's back."
     static let unlinkMessage = "Your devices stop syncing. Everything stays on both devices."
     static let introTitle = "Link your \(other)"
-    static let introBody = "Open Spotless on your \(other) and go to Settings › Devices › Link a device. Then show a code on one device and enter it on the other."
-    static let localNetworkLine = "Spotless will ask to find devices on your local network. Allow it so your devices can link."
+    static let introBody = "Open Chladni on your \(other) and go to Settings › Devices › Link a device. Then show a code on one device and enter it on the other."
+    static let localNetworkLine = "Chladni will ask to find devices on your local network. Allow it so your devices can link."
     static let successBody = "Everything now stays in sync between your devices: library, playlists, history, podcasts and settings. Downloads stay on each device."
-    static let welcomeTitle = "Using Spotless on your \(other) too?"
+    static let welcomeTitle = "Using Chladni on your \(other) too?"
     static let welcomeLine = "Link them to keep everything in sync."
-    static let hint = "Have Spotless on your \(other)? Link it to keep everything in sync."
+    static let hint = "Have Chladni on your \(other)? Link it to keep everything in sync."
 
     /// "A", "A and B", "A, B and 2 more".
     static func names(_ names: [String]) -> String {
@@ -242,7 +242,7 @@ struct PairingError: Equatable {
     var message: String
 
     static let localNetwork = PairingError(kind: .localNetwork,
-                                           message: "Spotless can't reach your local network. Allow it in Settings › Spotless › Local Network.")
+                                           message: "Chladni can't reach your local network. Allow it in Settings › Chladni › Local Network.")
     static let unreachable = PairingError(kind: .unreachable, message: "Your devices can't see each other. Make sure both are on the same Wi-Fi.")
 
     /// The core's error (`wrong_code:2`, `not_pairing`, `no_host`, an io error) as a sentence.
@@ -268,7 +268,7 @@ struct PairingError: Equatable {
 
 /// What was typed or pasted into the code boxes.
 enum CodeEntry {
-    /// Digits (at most 6), or a whole `spotless://pair` link (its code as the digits).
+    /// Digits (at most 6), or a whole `chladni://pair` link (its code as the digits).
     static func read(_ raw: String) -> (digits: String, qr: String?) {
         if let qr = pairLink(in: raw) {
             let code = URLComponents(string: qr)?.queryItems?.first { $0.name == "code" }?.value ?? ""
@@ -277,12 +277,12 @@ enum CodeEntry {
         return (String(raw.filter { $0.isASCII && $0.isNumber }.prefix(6)), nil)
     }
 
-    /// The first `spotless://pair?…` (or `encore://pair?…`) link in `text`, as `spotless://`.
+    /// The first `chladni://pair?…` (or `encore://pair?…`) link in `text`, as `chladni://`.
     static func pairLink(in text: String) -> String? {
-        for scheme in ["spotless://pair?", "encore://pair?"] {
+        for scheme in ["chladni://pair?", "encore://pair?"] {
             guard let r = text.range(of: scheme, options: .caseInsensitive) else { continue }
             let tail = text[r.upperBound...].prefix { !$0.isWhitespace }
-            return "spotless://pair?" + tail
+            return "chladni://pair?" + tail
         }
         return nil
     }

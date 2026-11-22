@@ -50,7 +50,7 @@
 		const fromArgs = (args: string[]) => {
 			const given = args.filter((a) => !a.startsWith('-'));
 			if (!given.length) return;
-			// A device-linking QR (`spotless://pair?…`, deeplink.rs passes it through): join with it.
+			// A device-linking QR (`chladni://pair?…`, deeplink.rs passes it through): join with it.
 			const pair = given.find(isPairLink);
 			if (pair) return openPairing({ qr: pair });
 			const spotify = given.find(isSpotifyLink);

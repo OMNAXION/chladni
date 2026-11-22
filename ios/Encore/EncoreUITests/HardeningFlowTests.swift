@@ -16,7 +16,7 @@ final class HardeningFlowTests: XCTestCase {
         app.launchArguments = ["-uitest", "-coreFail"]
         app.launch()
         XCTAssertTrue(el("core-failed").waitForExistence(timeout: 10))
-        XCTAssertTrue(app.staticTexts["Spotless couldn't start"].exists)
+        XCTAssertTrue(app.staticTexts["Chladni couldn't start"].exists)
         XCTAssertTrue(el("core-diagnostics").exists, "Send diagnostics")
         XCTAssertTrue(el("core-copy-log").exists)
         XCTAssertFalse(el("tab-home").exists, "no fixture library behind it")

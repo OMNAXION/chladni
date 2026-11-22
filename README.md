@@ -1,66 +1,34 @@
-<p align="center">
-  <img src="docs/readme/hero.png" alt="Spotless: music, podcasts and audiobooks. Free. No ads. No account." width="880">
-</p>
+# Chladni
 
-<p align="center">
-  A free music app for Mac and iPhone. Songs, podcasts and audiobooks,
-  with no ads, no account and no tracking. Open source.
-</p>
+A music app for Mac and iPhone, with shared Rust playback and library code.
 
-<p align="center">
-  <a href="https://github.com/fjenn/spotless/releases/latest"><img src="https://img.shields.io/github/v/release/fjenn/spotless?style=flat-square&label=release&labelColor=1b1b20&color=FF2D7A" alt="Latest release"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-FF2D7A?style=flat-square&labelColor=1b1b20" alt="License: GPL-3.0"></a>
-  <img src="https://img.shields.io/badge/macOS_13.3+_·_iOS_17+-FF2D7A?style=flat-square&labelColor=1b1b20&label=platform" alt="macOS 13.3 or later, iOS 17 or later">
-</p>
+Based on Spotless by [fjenn](https://github.com/fjenn/spotless), licensed under GPL-3.0-or-later.
+This is a modified fork; see [the fork notice](docs/FORK-NOTICE.md) for provenance, changes,
+data migration and retained upstream artwork. No fork downloads are published here.
 
-<p align="center">
-  <a href="https://github.com/fjenn/spotless/releases/latest/download/Spotless.dmg"><img src="docs/readme/download-mac.png" alt="Download Spotless for Mac" width="458"></a>
-</p>
+<!-- TODO: Add owner-provided download, website, support, privacy and bug-report links. -->
 
-<div align="center">
+## Install on Mac
 
-<sub>Apple silicon and Intel, signed and notarized, updates itself.
-&nbsp;·&nbsp; <b>iPhone:</b> coming soon to the App Store; <a href="#install-on-iphone">install it yourself</a> in the meantime.</sub><br>
-<sub>[Website][website] &nbsp;·&nbsp; [Support][support] &nbsp;·&nbsp; [All releases][releases]
-&nbsp;·&nbsp; [Report a bug][bug]</sub>
+The Mac app is **not notarized** (no Apple Developer ID), so macOS will warn the first time:
 
-</div>
+1. Download `Chladni.dmg` from the Releases page, open it and drag Chladni to Applications.
+2. Open Chladni once. macOS says it cannot verify the app: click **Done**.
+3. Open **System Settings > Privacy & Security**, scroll to the Chladni message and click **Open Anyway**, then confirm.
+   (Or, in Terminal: `xattr -dr com.apple.quarantine /Applications/Chladni.app`.)
 
-<br>
-
-<p align="center">
-  <img src="docs/readme/mac-home.png" alt="Spotless on the Mac: Home, with a song playing" width="900">
-</p>
-
-<p align="center">
-  <img src="docs/readme/iphone-row.png" alt="Spotless on iPhone: Home, Now Playing, a podcast episode with chapters, and Your Library" width="880">
-</p>
-
-<details>
-<summary><b>More screens</b></summary>
-<br>
-<p align="center">
-  <img src="docs/readme/mac-album.png" alt="An album page on the Mac" width="900">
-</p>
-<p align="center">
-  <img src="docs/readme/iphone-more.png" alt="Lyrics, search, a free audiobook, and importing playlists on iPhone" width="880">
-</p>
-</details>
-
-<p align="center"><sub>Screenshots use a made-up catalogue: the artists, albums and covers are not real.</sub></p>
+The release is ad-hoc signed and built for Apple silicon (arm64). There is no auto-update; download new releases yourself.
 
 ## Install on iPhone
 
-Spotless for iPhone is coming to the App Store soon. If you want it now, install it yourself:
+Build the iPhone app locally with your own Apple ID:
 
 - **Build it** with Xcode and your own Apple ID, following [Build from source › iPhone](#iphone)
   (change the bundle ID and team to your own). An AI coding agent can do this from this README.
-- **Or sideload the ready-made IPA** from the latest `ios-v*` [release][releases] with the tool you
-  prefer. Needs iOS 17 or later.
 
 ## What it does
 
-Spotless plays music, podcasts and audiobooks. The Mac app (Tauri + Svelte) and the iPhone app
+Chladni plays music, podcasts and audiobooks. The Mac app (Tauri + Svelte) and the iPhone app
 (SwiftUI) share one Rust core, so search, recommendations, the library and downloads work the
 same way on both.
 
@@ -100,7 +68,7 @@ same way on both.
 #### Mac extras
 - Menu bar controls and a mini player.
 - Media keys, global shortcuts and a full set of keyboard shortcuts.
-- Automatic updates.
+- Automatic updates are disabled in this fork.
 
 #### iPhone extras
 - Lock Screen, Control Center and Dynamic Island playback controls.
@@ -108,12 +76,12 @@ same way on both.
 
 ## How it works
 
-Spotless gets its music catalogue from public sources, mainly YouTube Music, and plays the audio
+Chladni gets its music catalogue from public sources, mainly YouTube Music, and plays the audio
 itself with [mpv](https://mpv.io). There is no web player inside, so there are no audio, video or
 banner ads. Podcasts come straight from their publishers' feeds, audiobooks from LibriVox and the
 Internet Archive, and lyrics from services such as [LRCLIB](https://lrclib.net).
 
-There is no Spotless server. Your library, playlists, history, mixes and downloads are built and
+There is no Chladni server. Your library, playlists, history, mixes and downloads are built and
 kept on your device. If you want your existing YouTube Music likes and playlists, you can sign in
 with your YouTube account, and only then.
 
@@ -131,7 +99,7 @@ with your YouTube account, and only then.
   only to YouTube/Google. While you are signed in, songs you play are added to your YouTube
   history unless you turn that off in Settings or use a private session.
 
-The full text is on the [privacy page][privacy].
+<!-- TODO: Link the owner-provided privacy policy when available. -->
 
 ## Build from source
 
@@ -146,7 +114,7 @@ cargo install tauri-cli --locked          # or use ui/node_modules/.bin/tauri af
 (cd ui && pnpm install)
 export LIBRARY_PATH="$(brew --prefix)/lib:$LIBRARY_PATH"
 cargo tauri dev                           # run with hot reload
-scripts/build-mac.sh --release            # a Spotless.app that uses Homebrew's libmpv
+scripts/build-mac.sh --release            # a Chladni.app that uses Homebrew's libmpv
 ```
 
 For a self-contained app and DMG that runs on other Macs, use `scripts/release-mac.sh`. It bundles
@@ -167,7 +135,7 @@ cd ios/Encore && xcodegen generate && open Encore.xcodeproj
 ```
 
 In Xcode, pick your own team under Signing & Capabilities, then run the `Encore` scheme (the
-project's internal name; the app is called Spotless). Tests: `SIM=<simulator udid> ios/Encore/scripts/test.sh`.
+project's internal name; the app is called Chladni). Tests: `SIM=<simulator udid> ios/Encore/scripts/test.sh`.
 
 ### Tests
 
@@ -184,7 +152,7 @@ More in [CONTRIBUTING.md](CONTRIBUTING.md).
 <details>
 <summary><b>Is it really free?</b></summary>
 <br>
-Yes. There is no paid tier, no subscription and nothing to unlock. Spotless is open-source
+Yes. There is no paid tier, no subscription and nothing to unlock. Chladni is open-source
 software under the GPL, and it has no servers to pay for: the app runs on your device and fetches
 what you play directly from the source.
 </details>
@@ -193,14 +161,14 @@ what you play directly from the source.
 <summary><b>Why is there no account?</b></summary>
 <br>
 Because nothing needs one. Your library, playlists and history live on your device, and there is
-no Spotless server to sign in to. The only sign-in is the optional one to YouTube, for bringing in
+no Chladni server to sign in to. The only sign-in is the optional one to YouTube, for bringing in
 your existing YouTube Music library.
 </details>
 
 <details>
 <summary><b>Is it legal?</b></summary>
 <br>
-Spotless is an independent open-source app. It does not host or redistribute any music; it plays
+Chladni is an independent open-source app. It does not host or redistribute any music; it plays
 what YouTube and the other services serve to any other client. It is not affiliated with,
 endorsed by or connected to Spotify, YouTube, Google or any other company whose services it talks
 to. Whether and how you use it is up to you, in line with the laws and terms that apply where you
@@ -216,7 +184,7 @@ project, <a href="https://github.com/SimoHypers/limusic">Limusic</a>, has Window
 
 ## Credits
 
-Spotless is a fork of [**Limusic**](https://github.com/SimoHypers/limusic) by SimoHypers and
+Spotless by fjenn is a fork of [**Limusic**](https://github.com/SimoHypers/limusic) by SimoHypers and
 contributors (GPL-3.0), which in turn started from the playback engine of
 [Metrolist](https://github.com/mostafaalagamy/Metrolist). Thank you.
 
@@ -237,12 +205,5 @@ Third-party licences are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.
 
 ## License
 
-Spotless is free software under the [GNU General Public License v3.0 or later](LICENSE).
+Chladni is free software under the [GNU General Public License v3.0 or later](LICENSE).
 All product names and trademarks belong to their owners.
-
-<!-- Links used above, kept in one place. -->
-[website]: https://opena.tech/spotless
-[privacy]: https://opena.tech/spotless/privacy
-[support]: https://opena.tech/spotless/support
-[releases]: https://github.com/fjenn/spotless/releases
-[bug]: https://github.com/fjenn/spotless/issues/new/choose

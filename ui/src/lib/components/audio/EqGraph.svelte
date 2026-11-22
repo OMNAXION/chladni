@@ -1,5 +1,5 @@
 <!--
-	Spotless audio stream: the equalizer graph. A frequency-response curve (log axis, 20 Hz-20 kHz)
+	Chladni audio stream: the equalizer graph. A frequency-response curve (log axis, 20 Hz-20 kHz)
 	computed with the same RBJ formulas the player runs (lib/eq-curve.ts, DSSSP-style maths), with
 	one draggable point per band. Points move vertically only, like Spotify's.
 

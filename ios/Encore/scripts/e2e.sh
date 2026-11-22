@@ -19,7 +19,7 @@ echo "YouTube search from this IP before the run: HTTP $(wall)  (403 = bot wall 
 # The Spotify import flow reads a synthetic export from the app's Documents ("Open in Encore").
 python3 scripts/make-spotify-export.py "$OUT/e2e-export.zip" >/dev/null
 xcrun simctl install "$SIM" build/dd/Build/Products/Debug-iphonesimulator/Encore.app
-DOCS="$(xcrun simctl get_app_container "$SIM" app.spotlessmusic.ios data)/Documents"; mkdir -p "$DOCS"
+DOCS="$(xcrun simctl get_app_container "$SIM" studio.chladni.ios data)/Documents"; mkdir -p "$DOCS"
 cp "$OUT/e2e-export.zip" "$DOCS/e2e-export.zip"
 T0=$(date +%s)
 TEST_RUNNER_E2E_SHOTS="$PWD/$OUT/shots" xcodebuild test-without-building -scheme EncoreE2E -destination "id=$SIM" \

@@ -114,7 +114,7 @@ final class DeviceSyncStore {
         if step == .enterCode || step == .scan { bonjour.start() }
     }
 
-    /// `spotless://pair?…` (the system camera or a pasted link): join with it straight away.
+    /// `chladni://pair?…` (the system camera or a pasted link): join with it straight away.
     func openJoin(qr: String) {
         open(.enterCode)
         let r = CodeEntry.read(qr)

@@ -1,4 +1,4 @@
-//! "Move Spotless to your Applications folder?" at a launch from anywhere else: the mounted DMG,
+//! "Move Chladni to your Applications folder?" at a launch from anywhere else: the mounted DMG,
 //! ~/Downloads, or an App Translocation mirror of either. LetsMove's logic, cut down: copy the
 //! bundle to /Applications (never ~/Applications), replacing and first quitting an older copy
 //! there, register it with LaunchServices so it shows in Apps/Launchpad, relaunch it, eject the
@@ -75,10 +75,10 @@ fn dmg_mount(path: &Path, hdiutil_info: &str) -> Option<PathBuf> {
         .find(|m| path.starts_with(m))
 }
 
-/// Shown in setup, before any window. Returns only when Spotless should carry on from where it
+/// Shown in setup, before any window. Returns only when Chladni should carry on from where it
 /// is; on a successful move the process exits here.
 pub(crate) fn offer(app: &tauri::AppHandle, o: Offer) {
-    let name = app.package_info().name.clone();
+    let name = app.config().product_name.as_deref().unwrap_or("Chladni");
     let move_it = match std::env::var("SPOTLESS_MOVE_ANSWER").as_deref() {
         Ok("move") => true,
         Ok(_) => false,
@@ -133,7 +133,7 @@ xattr -dr com.apple.quarantine "$t" 2>/dev/null || true; rm -rf "$2"; mv "$t" "$
     let admin = Command::new("osascript")
         .args([
             "-e", "on run argv",
-            "-e", "do shell script \"/bin/sh -c \" & quoted form of item 1 of argv & \" sh \" & quoted form of item 2 of argv & \" \" & quoted form of item 3 of argv with prompt \"Spotless needs your permission to install itself in Applications.\" with administrator privileges",
+            "-e", "do shell script \"/bin/sh -c \" & quoted form of item 1 of argv & \" sh \" & quoted form of item 2 of argv & \" \" & quoted form of item 3 of argv with prompt \"Chladni needs your permission to install itself in Applications.\" with administrator privileges",
             "-e", "end run",
             SCRIPT,
         ])
@@ -342,34 +342,34 @@ mod tests {
 
     #[test]
     fn finds_the_bundle() {
-        let b = bundle_of(Path::new("/Volumes/Spotless/Spotless.app/Contents/MacOS/limusic-app"));
-        assert_eq!(b.as_deref(), Some(Path::new("/Volumes/Spotless/Spotless.app")));
+        let b = bundle_of(Path::new("/Volumes/Chladni/Chladni.app/Contents/MacOS/limusic-app"));
+        assert_eq!(b.as_deref(), Some(Path::new("/Volumes/Chladni/Chladni.app")));
         assert_eq!(bundle_of(Path::new("/Users/x/app/target/release/limusic-app")), None);
-        assert_eq!(bundle_of(Path::new("/x/Spotless/Contents/MacOS/limusic-app")), None);
+        assert_eq!(bundle_of(Path::new("/x/Chladni/Contents/MacOS/limusic-app")), None);
     }
 
     #[test]
     fn decides_when_to_offer() {
         let apps = Path::new("/Applications");
-        assert!(needs_move(Path::new("/Volumes/Spotless/Spotless.app"), apps));
-        assert!(needs_move(Path::new("/Users/x/Downloads/Spotless.app"), apps));
-        assert!(needs_move(Path::new("/Users/x/Applications/Spotless.app"), apps));
-        assert!(!needs_move(Path::new("/Applications/Spotless.app"), apps));
-        assert!(!needs_move(Path::new("/Applications/Music/Spotless.app"), apps));
+        assert!(needs_move(Path::new("/Volumes/Chladni/Chladni.app"), apps));
+        assert!(needs_move(Path::new("/Users/x/Downloads/Chladni.app"), apps));
+        assert!(needs_move(Path::new("/Users/x/Applications/Chladni.app"), apps));
+        assert!(!needs_move(Path::new("/Applications/Chladni.app"), apps));
+        assert!(!needs_move(Path::new("/Applications/Music/Chladni.app"), apps));
         let t = Path::new("/tmp/t");
-        assert!(needs_move(Path::new("/tmp/src/Spotless.app"), t));
-        assert!(!needs_move(Path::new("/tmp/t/Spotless.app"), t));
+        assert!(needs_move(Path::new("/tmp/src/Chladni.app"), t));
+        assert!(!needs_move(Path::new("/tmp/t/Chladni.app"), t));
     }
 
     #[test]
     fn finds_the_dmg_mount() {
         let info = "framework       : 683\n================================================\n\
-            image-path      : /Users/x/Downloads/Spotless-0.1.0.dmg\n\
+            image-path      : /Users/x/Downloads/Chladni-0.1.0.dmg\n\
             /dev/disk6\tGUID_partition_scheme\t\n\
-            /dev/disk6s1\tApple_HFS\t/Volumes/Spotless 1\n";
-        let app = Path::new("/Volumes/Spotless 1/Spotless.app");
-        assert_eq!(dmg_mount(app, info).as_deref(), Some(Path::new("/Volumes/Spotless 1")));
-        assert_eq!(dmg_mount(Path::new("/Volumes/Spotless/Spotless.app"), info), None);
-        assert_eq!(dmg_mount(Path::new("/Users/x/Downloads/Spotless.app"), info), None);
+            /dev/disk6s1\tApple_HFS\t/Volumes/Chladni 1\n";
+        let app = Path::new("/Volumes/Chladni 1/Chladni.app");
+        assert_eq!(dmg_mount(app, info).as_deref(), Some(Path::new("/Volumes/Chladni 1")));
+        assert_eq!(dmg_mount(Path::new("/Volumes/Chladni/Chladni.app"), info), None);
+        assert_eq!(dmg_mount(Path::new("/Users/x/Downloads/Chladni.app"), info), None);
     }
 }

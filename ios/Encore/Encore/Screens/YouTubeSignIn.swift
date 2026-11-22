@@ -1,6 +1,6 @@
 // Stream ios-p2: the optional YouTube account (desktop: `src-tauri/src/session.rs`).
 //
-// Sign-in is Google's own page in a `WKWebView`: the user types into Google, never into Spotless,
+// Sign-in is Google's own page in a `WKWebView`: the user types into Google, never into Chladni,
 // and the app never sees the password. When the web view lands back on music.youtube.com, the
 // youtube.com cookies are read out of `WKHTTPCookieStore` and handed to the core as one `Cookie`
 // header (`account_sign_in`), which validates them, picks the channel and seals them into the
@@ -263,7 +263,7 @@ private struct ChannelPicker: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                SettingsNote(text: "This Google account has more than one YouTube channel. Pick the one Spotless should use.")
+                SettingsNote(text: "This Google account has more than one YouTube channel. Pick the one Chladni should use.")
                     .padding(.vertical, Space.s)
                 ForEach(app.account.identities) { idn in
                     Button {

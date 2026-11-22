@@ -268,10 +268,10 @@ pub fn ensure_alive() -> Option<Health> {
 }
 
 /// Debug hook: the next [`register`] hands its URL out and then kills the listener, so mpv opens a
-/// URL on a dead port: the on-failure path end to end (`spotless://debug?audio=kill-proxy-on-load`).
+/// URL on a dead port: the on-failure path end to end (`chladni://debug?audio=kill-proxy-on-load`).
 pub static KILL_ON_NEXT_LOAD: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
 
-/// Debug hook: close the listener as iOS would (`spotless://debug?audio=kill-proxy`).
+/// Debug hook: close the listener as iOS would (`chladni://debug?audio=kill-proxy`).
 pub fn kill() {
     if let Some(s) = SERVER.get() {
         s.kill();

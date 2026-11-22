@@ -106,7 +106,7 @@ export function downloadHandlers(
 			.filter((t) => t.state === 'downloading')
 			.map((t) => ({ videoId: t.song.video_id, done: t.done, total: t.total })),
 		network: { ...net },
-		dir: '/Users/you/Library/Application Support/app.spotless.desktop/Downloads',
+		dir: '/Users/you/Library/Application Support/studio.chladni.desktop/Downloads',
 		art: {},
 		quality
 	});

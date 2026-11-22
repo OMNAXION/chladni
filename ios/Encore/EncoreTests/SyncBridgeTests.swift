@@ -88,7 +88,7 @@ final class SyncBridgeTests: XCTestCase {
 
     @MainActor func testDebugLinkOnlyInDebugBuilds() {
         let app = AppModel(core: MockCoreClient(bundle: Bundle(for: AppModel.self)))
-        app.router.handle(URL(string: "spotless://debug")!, app: app)
+        app.router.handle(URL(string: "chladni://debug")!, app: app)
         #if DEBUG
         XCTAssertTrue(app.router.debugOpen)
         #else

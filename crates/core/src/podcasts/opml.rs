@@ -52,7 +52,7 @@ pub fn id_for_feed(url: &str) -> String {
 pub fn export(shows: &[Show]) -> Result<String, String> {
     let mut doc = opml::OPML {
         version: "2.0".into(),
-        head: Some(opml::Head { title: Some("Spotless podcast subscriptions".into()), ..Default::default() }),
+        head: Some(opml::Head { title: Some("Chladni podcast subscriptions".into()), ..Default::default() }),
         ..Default::default()
     };
     for s in shows {

@@ -21,14 +21,14 @@ final class PolishTests: XCTestCase {
     func testSharedLinksOpenWhatWasShared() {
         let album = BrowseItem(kind: .album, id: "MPREb_K8qWMWVqXGi", title: "RAM")
         XCTAssertEqual(LinkTarget.parse(ShareLinks.item(album).web!.absoluteString), .album(album.id))
-        XCTAssertEqual(ShareLinks.item(album).app.absoluteString, "spotless://album/MPREb_K8qWMWVqXGi")
+        XCTAssertEqual(ShareLinks.item(album).app.absoluteString, "chladni://album/MPREb_K8qWMWVqXGi")
         let pl = BrowseItem(kind: .playlist, id: "VLPL123", title: "Mix")
         XCTAssertEqual(LinkTarget.parse(ShareLinks.item(pl).web!.absoluteString), .playlist("VLPL123"))
         let artist = BrowseItem(kind: .artist, id: "UCx", title: "A")
         XCTAssertEqual(LinkTarget.parse(ShareLinks.item(artist).web!.absoluteString), .artist("UCx"))
         let song = SongItem(videoId: "4D7u5KF7SP8", title: "Get Lucky", artists: "Daft Punk")
         XCTAssertEqual(LinkTarget.parse(ShareLinks.song(song).web!.absoluteString), .song(song.videoId))
-        XCTAssertEqual(ShareLinks.song(song).app.absoluteString, "spotless://song/4D7u5KF7SP8")
+        XCTAssertEqual(ShareLinks.song(song).app.absoluteString, "chladni://song/4D7u5KF7SP8")
         // Own playlists only open on this phone: no web link.
         XCTAssertNil(ShareLinks.item(BrowseItem(kind: .playlist, id: "LOCALPLAYLIST:3", title: "Mine")).web)
     }

@@ -9,7 +9,7 @@
 import Foundation
 import os
 
-let errorLog = Logger(subsystem: "app.spotlessmusic.ios", category: "error")
+let errorLog = Logger(subsystem: "studio.chladni.ios", category: "error")
 
 enum FriendlyError {
     /// Plain-language wording for each failure family (`DEFAULT_ERROR_WORDS` on the desktop).

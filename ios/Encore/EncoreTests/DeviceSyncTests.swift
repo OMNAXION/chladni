@@ -20,7 +20,7 @@ final class DeviceSyncTextTests: XCTestCase {
         }
         XCTAssertEqual(PairingError.from("No route to host (os error 65)"), .localNetwork)
         XCTAssertEqual(PairingError.localNetwork.message,
-                       "Spotless can't reach your local network. Allow it in Settings › Spotless › Local Network.")
+                       "Chladni can't reach your local network. Allow it in Settings › Chladni › Local Network.")
         XCTAssertEqual(PairingError.from("bad_key").message, "Couldn't link your devices. Try again.")
     }
 
@@ -78,12 +78,12 @@ final class DeviceSyncTextTests: XCTestCase {
         XCTAssertEqual(CodeEntry.read("4829135").digits, "482913", "at most six")
         XCTAssertEqual(CodeEntry.read("a4b8").digits, "48")
         XCTAssertNil(CodeEntry.read("482913").qr)
-        let link = "Link: spotless://pair?v=1&code=123456&addr=10.0.0.2%3A47615&dev=x&name=Mac thanks"
+        let link = "Link: chladni://pair?v=1&code=123456&addr=10.0.0.2%3A47615&dev=x&name=Mac thanks"
         let r = CodeEntry.read(link)
-        XCTAssertEqual(r.qr, "spotless://pair?v=1&code=123456&addr=10.0.0.2%3A47615&dev=x&name=Mac")
+        XCTAssertEqual(r.qr, "chladni://pair?v=1&code=123456&addr=10.0.0.2%3A47615&dev=x&name=Mac")
         XCTAssertEqual(r.digits, "123456")
-        XCTAssertEqual(CodeEntry.pairLink(in: "encore://pair?v=1&code=111111"), "spotless://pair?v=1&code=111111")
-        XCTAssertNil(CodeEntry.pairLink(in: "spotless://track/abc"))
+        XCTAssertEqual(CodeEntry.pairLink(in: "encore://pair?v=1&code=111111"), "chladni://pair?v=1&code=111111")
+        XCTAssertNil(CodeEntry.pairLink(in: "chladni://track/abc"))
     }
 
     func testSyncChangedEvent() throws {
@@ -95,7 +95,7 @@ final class DeviceSyncTextTests: XCTestCase {
         guard case .syncChanged(let got) = CoreEvent.decode(name: "sync-changed", json: json) else { return XCTFail("not decoded") }
         XCTAssertEqual(got, s)
         // The core's own JSON (docs/SYNC.md §7), nulls and all.
-        let core = #"{"status":{"paired":false,"deviceId":"d","deviceName":"iPhone","platform":"ios","pairId":null,"peers":[],"pending":0,"lastSync":null,"lastError":null,"relay":{"enabled":true,"ok":null},"lanPort":null,"pairing":{"code":"123456","qr":"spotless://pair?v=1","expiresAt":1700000300},"syncing":false,"active":true},"entities":[]}"#
+        let core = #"{"status":{"paired":false,"deviceId":"d","deviceName":"iPhone","platform":"ios","pairId":null,"peers":[],"pending":0,"lastSync":null,"lastError":null,"relay":{"enabled":true,"ok":null},"lanPort":null,"pairing":{"code":"123456","qr":"chladni://pair?v=1","expiresAt":1700000300},"syncing":false,"active":true},"entities":[]}"#
         guard case .syncChanged(let c) = CoreEvent.decode(name: "sync-changed", json: Data(core.utf8)) else { return XCTFail("core JSON") }
         XCTAssertEqual(c.pairing?.code, "123456")
     }

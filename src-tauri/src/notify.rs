@@ -19,11 +19,11 @@ static PREV: Mutex<Option<notify_rust::NotificationHandle>> = Mutex::new(None);
 
 pub fn track_changed(app: &AppHandle, title: &str, artists: &str, even_focused: bool) {
     if !even_focused && app.webview_windows().values().any(|w| w.is_focused().unwrap_or(false)) {
-        tracing::debug!("notification skipped: a Spotless window has focus");
+        tracing::debug!("notification skipped: a Chladni window has focus");
         return;
     }
     let mut n = notify_rust::Notification::new();
-    n.summary(title).body(artists).appname("Spotless");
+    n.summary(title).body(artists).appname("Chladni");
     #[cfg(all(unix, not(target_os = "macos")))]
     {
         // The binary name is the icon name the .deb/.rpm install. An AppImage has no themed icon,

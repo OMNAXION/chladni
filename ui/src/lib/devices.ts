@@ -18,10 +18,10 @@ export const W = {
 	unlinkBody: 'Your devices stop syncing. Everything stays on both devices.',
 	errorLine: "Can't reach your other device or the sync service right now. Changes will go through when it's back.",
 	introTitle: `Link your ${OTHER}`,
-	introBody: `Open Spotless on your ${OTHER} and go to Settings › Devices › Link a device. Then show a code on one device and enter it on the other.`,
+	introBody: `Open Chladni on your ${OTHER} and go to Settings › Devices › Link a device. Then show a code on one device and enter it on the other.`,
 	showCode: 'Show code',
 	enterCode: 'Enter code',
-	localNetwork: 'Spotless will ask to find devices on your local network. Allow it so your devices can link.',
+	localNetwork: 'Chladni will ask to find devices on your local network. Allow it so your devices can link.',
 	showHeading: 'Enter this code on your other device',
 	qrCaption: "Or scan this code with your iPhone's camera.",
 	waiting: 'Waiting for your other device…',
@@ -36,11 +36,11 @@ export const W = {
 	successBody:
 		'Everything now stays in sync between your devices: library, playlists, history, podcasts and settings. Downloads stay on each device.',
 	done: 'Done',
-	welcomeTitle: `Using Spotless on your ${OTHER} too?`,
+	welcomeTitle: `Using Chladni on your ${OTHER} too?`,
 	welcomeLine: 'Link them to keep everything in sync.',
 	linkNow: 'Link now',
 	notNow: 'Not now',
-	hint: `Have Spotless on your ${OTHER}? Link it to keep everything in sync.`,
+	hint: `Have Chladni on your ${OTHER}? Link it to keep everything in sync.`,
 	openSystemSettings: 'Open System Settings'
 } as const;
 
@@ -112,7 +112,7 @@ export function joinError(raw: unknown): JoinError {
 	if (e === 'local_network_denied' || /os error 65\b|no route to host/i.test(e))
 		return {
 			kind: 'permission',
-			message: "Spotless can't reach your local network. Allow it in System Settings › Privacy & Security › Local Network."
+			message: "Chladni can't reach your local network. Allow it in System Settings › Privacy & Security › Local Network."
 		};
 	if (/no_host|timeout|timed out|closed|refused|unreachable|os error (60|61|64)\b/i.test(e))
 		return { kind: 'unreachable', message: "Your devices can't see each other. Make sure both are on the same Wi-Fi." };
@@ -126,7 +126,7 @@ export const LOCAL_NETWORK_SETTINGS = 'x-apple.systempreferences:com.apple.prefe
 
 export const EMPTY_CODE = ['', '', '', '', '', ''];
 
-export const isPairLink = (s: string) => /^\s*(spotless|encore):\/\/pair\?/i.test(s);
+export const isPairLink = (s: string) => /^\s*(chladni|encore):\/\/pair\?/i.test(s);
 
 /**
  * Typing or pasting `text` into box `at`: digits fill from there on (a paste of a whole code
@@ -166,7 +166,7 @@ export const codeComplete = (boxes: string[]) => /^\d{6}$/.test(codeOf(boxes));
 
 export const HINT_AFTER_SECS = 3 * 86400;
 
-/** Home's "Have Spotless on your iPhone?" banner: not linked, used for 3 days, never shown before. */
+/** Home's "Have Chladni on your iPhone?" banner: not linked, used for 3 days, never shown before. */
 export function hintDue(p: { paired: boolean; firstUse: number | null; shown: boolean; now: number }): boolean {
 	return !p.paired && !p.shown && p.firstUse !== null && p.now - p.firstUse >= HINT_AFTER_SECS;
 }

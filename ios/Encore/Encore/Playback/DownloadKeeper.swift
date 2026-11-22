@@ -13,13 +13,13 @@ import SwiftUI
 import UIKit
 import os
 
-let downloadLog = Logger(subsystem: "app.spotlessmusic.ios", category: "downloads")
+let downloadLog = Logger(subsystem: "studio.chladni.ios", category: "downloads")
 
 @MainActor
 final class DownloadKeeper {
     static let shared = DownloadKeeper()
     /// Continued-processing identifiers: `<prefix>.<uuid>`, permitted by the wildcard in Info.plist.
-    nonisolated static let taskPrefix = "app.spotlessmusic.ios.downloads"
+    nonisolated static let taskPrefix = "studio.chladni.ios.downloads"
 
     private weak var app: AppModel?
     private var bgTask: UIBackgroundTaskIdentifier = .invalid
@@ -65,7 +65,7 @@ final class DownloadKeeper {
 
     private func enteredBackground() {
         guard pending > 0, bgTask == .invalid, !continuedRunning else { return }
-        bgTask = UIApplication.shared.beginBackgroundTask(withName: "Spotless downloads") { [weak self] in
+        bgTask = UIApplication.shared.beginBackgroundTask(withName: "Chladni downloads") { [weak self] in
             Task { @MainActor in self?.endBackgroundTask() }
         }
         downloadLog.info("background: \(self.pending) downloads pending, background task started")

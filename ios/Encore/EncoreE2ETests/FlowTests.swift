@@ -545,7 +545,7 @@ final class FlowTests: E2ECase {
         // Share from Now Playing: the system sheet with our Copy Encore link.
         openNowPlaying()
         tap(el("np-share"), "Share")
-        XCTAssertTrue(app.descendants(matching: .any)["Copy Spotless link"].waitForExistence(timeout: 10), "share sheet")
+        XCTAssertTrue(app.descendants(matching: .any)["Copy Chladni link"].waitForExistence(timeout: 10), "share sheet")
     }
 
     // MARK: 21 Spotify import (ios-polish)

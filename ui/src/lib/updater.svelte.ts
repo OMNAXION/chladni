@@ -1,9 +1,7 @@
-// Auto-update via Tauri's updater plugin. Checks a signed latest.json on GitHub Releases; the
-// startup check is silent unless an update exists, the Settings check always reports a result.
+// Auto-update via Tauri's updater plugin is disabled for this fork.
 //
 // `UPDATER_ENABLED` is the kill switch: off, no request goes out and the banner never shows.
-// The feed is plugins.updater.endpoints in tauri.conf.json (latest.json on the GitHub release,
-// written by scripts/release-mac.sh); every update is checked against plugins.updater.pubkey.
+// TODO: Set the owner's endpoint and public key pair in src-tauri/tauri.conf.json before enabling updates and setting RELEASES_URL.
 import { check, Update } from '@tauri-apps/plugin-updater';
 import { relaunch } from '@tauri-apps/plugin-process';
 import { toast } from './player.svelte';
@@ -14,9 +12,9 @@ import { isNewer, isPrerelease } from './version';
 import { getVersion } from '@tauri-apps/api/app';
 
 /** The kill switch (see the header). */
-export const UPDATER_ENABLED = true;
+export const UPDATER_ENABLED = false;
 
-const RELEASES_URL = 'https://github.com/fjenn/spotless/releases/latest';
+const RELEASES_URL = '';
 
 /** How often the quiet check repeats while the app stays open. */
 export const QUIET_INTERVAL_MS = 6 * 60 * 60 * 1000;
@@ -95,6 +93,7 @@ export async function checkForUpdatesInteractive(): Promise<{ message: string; e
 
 /** Send the user to the releases page when the update can't be installed in place. */
 export function openDownloadPage() {
+	if (!UPDATER_ENABLED || !RELEASES_URL) return;
 	openExternal(RELEASES_URL).catch((e) => toast.error(t('toasts.browser_failed', { error: String(e) })));
 }
 

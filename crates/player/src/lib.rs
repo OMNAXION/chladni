@@ -365,8 +365,8 @@ fn new_mpv(cache_dir: &str) -> Result<Mpv, Error> {
     // What the system mixer calls the stream. mpv's own names are "mpv" and `<media title> - mpv`,
     // and the media title of a proxied stream is the last segment of its loopback URL, so KDE's
     // mixer listed "e09087d13ce71f6d - mpv" (issue #409).
-    mpv.set_property("audio-client-name", "Spotless")?;
-    mpv.set_property("title", "Spotless")?;
+    mpv.set_property("audio-client-name", "Chladni")?;
+    mpv.set_property("title", "Chladni")?;
     mpv.set_property("gapless-audio", "yes")?;
     // iOS: since mpv 0.40 `ao_audiounit` sets the shared AVAudioSession to `.playback` *with
     // `.mixWithOthers`* unless `audio-exclusive` is on, every time it opens its output. A mixable

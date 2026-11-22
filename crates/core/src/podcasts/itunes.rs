@@ -15,7 +15,7 @@ use sha1::{Digest, Sha1};
 use super::{rss_id, sanitize, store, Episode, Show, ShowSource};
 
 const CACHE_TTL: i64 = 24 * 3600;
-const UA: &str = "Spotless/1.0";
+const UA: &str = "Chladni/1.0";
 
 fn s(v: &Value, k: &str) -> Option<String> {
     v.get(k).and_then(Value::as_str).map(str::to_owned).filter(|x| !x.is_empty())

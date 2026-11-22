@@ -10,7 +10,7 @@
 	 *   success  "Linked" and what syncs
 	 *
 	 * Opened from Settings › Devices, the avatar menu, the first-run screen, Home's hint and a
-	 * `spotless://pair` link (which joins with the link's code and addresses at once).
+	 * `chladni://pair` link (which joins with the link's code and addresses at once).
 	 */
 	import { onDestroy } from 'svelte';
 	import * as api from '$lib/api';

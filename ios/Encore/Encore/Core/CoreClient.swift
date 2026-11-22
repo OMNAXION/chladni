@@ -263,7 +263,7 @@ protocol CoreClient: AnyObject, Sendable {
     func syncStatus() async throws -> SyncStatus                                           // sync_status
     func syncStartPairing() async throws -> SyncPairingStart                               // sync_start_pairing
     func syncCancelPairing() async throws -> SyncStatus                                    // sync_cancel_pairing
-    /// `qr`: a `spotless://pair` link; `host`/`port`: a device showing a code, found with Bonjour.
+    /// `qr`: a `chladni://pair` link; `host`/`port`: a device showing a code, found with Bonjour.
     func syncJoin(code: String?, qr: String?, host: String?, port: Int?) async throws -> SyncStatus // sync_join
     func syncUnpair() async throws -> SyncStatus                                           // sync_unpair
     func syncNow() async throws -> SyncStatus                                              // sync_now

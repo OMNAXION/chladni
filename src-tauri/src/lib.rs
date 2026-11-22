@@ -1,4 +1,4 @@
-//! Spotless's desktop app: a thin Tauri host over `encore_core` (crates/core). The core owns the
+//! Chladni's desktop app: a thin Tauri host over `encore_core` (crates/core). The core owns the
 //! transport, player, database, queue and every feature; this crate adds the windows, tray, menu,
 //! hotkeys, sign-in webview and the command boundary, and implements the core's `Host` (host.rs).
 
@@ -695,7 +695,7 @@ pub fn run() {
         *LAUNCH_ARGS.lock().unwrap() = std::env::args_os()
             .skip(1)
             .map(|a| a.to_string_lossy().into_owned())
-            // A `spotless://` (or `encore://`) link in argv becomes the https link the page knows
+            // A `chladni://` (or `encore://`) link in argv becomes the https link the page knows
             // how to open.
             .map(|a| deeplink::to_web_link(&a).filter(|_| deeplink::is_app_link(&a)).unwrap_or(a))
             .collect();
@@ -783,7 +783,7 @@ pub fn run() {
     if single_instance && std::env::var_os("LIMUSIC_MULTI").is_none() {
         builder = builder.plugin(tauri_plugin_single_instance::init(|app, args, _cwd| {
             tray::show_main(app);
-            // `Spotless <link>` against this instance (#348). argv[0] leads on every platform.
+            // `Chladni <link>` against this instance (#348). argv[0] leads on every platform.
             if args.len() > 1 {
                 deeplink::route(app, args.into_iter().skip(1));
             }
@@ -823,7 +823,7 @@ pub fn run() {
                 .body(webview::HARNESS_HTML.as_bytes())
                 .expect("static harness response")
         })
-        // `spotless://` / `encore://` links and https links opened with the app (deeplink.rs). On macOS they arrive
+        // `chladni://` / `encore://` links and https links opened with the app (deeplink.rs). On macOS they arrive
         // as Apple Events (`RunEvent::Opened`), which this plugin turns into `deep-link://new-url`.
         .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_updater::Builder::new().build())
@@ -877,7 +877,7 @@ pub fn run() {
 
             // App data dir for the SQLite file and mpv's on-disk audio cache (`Host::cache_dir`).
             let data_dir = app.path().app_data_dir().unwrap_or_else(|_| std::env::temp_dir());
-            // Encore → Spotless: move the folders kept under the old bundle id before anything
+            // Encore → Chladni: move the folders kept under the old bundle id before anything
             // (the log, the database, the first webview) opens them (migrate.rs).
             let identifier = app.config().identifier.clone();
             let moved = {
@@ -897,7 +897,7 @@ pub fn run() {
                     use tauri_plugin_dialog::{DialogExt, MessageDialogKind};
                     app.dialog()
                         .message(
-                            "Spotless is Encore's new name. Quit Encore, then open Spotless again: \
+                            "Quit Encore, then open Chladni again: \
                              your library, likes, downloads and settings move over.",
                         )
                         .title("Quit Encore first")

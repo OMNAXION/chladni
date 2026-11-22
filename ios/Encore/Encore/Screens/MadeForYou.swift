@@ -2,8 +2,8 @@
 // Spotify iOS layouts over the smart2 commands (`madeForYou`, `whatsNew`, `whatsNewMarkSeen`).
 import SwiftUI
 
-/// Our mark: the dark-pink disc and black beamed note of the Spotless master
-/// (assets/brand/spotless.svg; the app icon puts it on a black tile). The "Spotless" owner badge
+/// Our mark: the dark-pink disc and black beamed note of the Chladni master
+/// (assets/brand/spotless.svg; the app icon puts it on a black tile). The "Chladni" owner badge
 /// on Made for you pages and the corner of generated covers; `size` is the disc's diameter.
 /// `SpotlessGlyph` is the master's note in its 100 box; the `gen-brand` lines are rewritten by
 /// scripts/brand/gen-brand.py ship.
@@ -394,7 +394,7 @@ struct DailyMixView: View {
     var body: some View {
         EntityScaffold(title: title, artURL: cover, isPlayingThis: playingThis, onPlay: onPlay) { off in
             EntityHeader(offset: off, cover: AnyView(ArtImage(url: cover, px: 720, radius: Radius.s)), title: title,
-                         owner: "Spotless", ownerArt: nil, ownerBadge: AnyView(SpotlessMark(size: 24)), meta: meta,
+                         owner: "Chladni", ownerArt: nil, ownerBadge: AnyView(SpotlessMark(size: 24)), meta: meta,
                          description: subtitle, actions: AnyView(actionIcons), playing: playingThis && !app.player.paused,
                          onShuffle: { play(nil, shuffle: true) }, shuffleOn: playingThis && app.player.shuffle, onPlay: onPlay)
         } content: {
@@ -416,7 +416,7 @@ struct DailyMixView: View {
         .accessibilityIdentifier("mix-page")
         .task(id: "\(id)#\(attempt)") { await load() }
         .sheet(isPresented: $moreOpen) {
-            RadioMoreSheet(title: title, art: cover, subtitle: subtitle ?? "Spotless", rows: moreRows)
+            RadioMoreSheet(title: title, art: cover, subtitle: subtitle ?? "Chladni", rows: moreRows)
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
                 .presentationBackground { SheetGlass() }

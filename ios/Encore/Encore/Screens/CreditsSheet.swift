@@ -32,9 +32,9 @@ final class CreditsCache {
 @MainActor func openCreditName(_ app: AppModel, name: String, artistId: String?) {
     let link: String
     if let artistId {
-        link = "spotless://artist/\(artistId.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? artistId)"
+        link = "chladni://artist/\(artistId.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? artistId)"
     } else {
-        link = "spotless://search?q=\(name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? name)"
+        link = "chladni://search?q=\(name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? name)"
     }
     if let u = URL(string: link) { app.router.handle(u, app: app) }
 }

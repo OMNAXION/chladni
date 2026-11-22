@@ -1,4 +1,4 @@
-//! Native macOS menu bar (Spotless / File / Edit / View / Playback / Window / Help).
+//! Native macOS menu bar (Chladni / File / Edit / View / Playback / Window / Help).
 //!
 //! Two kinds of item:
 //!
@@ -51,8 +51,7 @@ const SEEK_STEP: f64 = 10.0;
 /// Volume step for Volume Up / Volume Down, in percent.
 const VOLUME_STEP: i64 = 10;
 
-const HELP_URL: &str = "https://github.com/encore-music/encore";
-const ISSUES_URL: &str = "https://github.com/encore-music/encore/issues";
+// TODO: Add owner-provided website, help and issue links before restoring those entries.
 
 fn item(
     app: &AppHandle,
@@ -68,23 +67,22 @@ pub fn build(app: &AppHandle) -> tauri::Result<Menu<Wry>> {
     let version = app.package_info().version.to_string();
     let about = PredefinedMenuItem::about(
         app,
-        Some("About Spotless"),
+        Some("About Chladni"),
         Some(
             AboutMetadataBuilder::new()
-                .name(Some("Spotless"))
+                .name(Some("Chladni"))
                 .version(Some(version))
                 .comments(Some(
                     "A free, open-source, ad-free music player.\n\
                      Based on Limusic by SimoHypers (github.com/SimoHypers/limusic).",
                 ))
                 .license(Some("GPL-3.0-or-later"))
-                .website(Some(HELP_URL))
                 .build(),
         ),
     )?;
     let sep = || PredefinedMenuItem::separator(app);
 
-    let app_menu = SubmenuBuilder::new(app, "Spotless")
+    let app_menu = SubmenuBuilder::new(app, "Chladni")
         .item(&about)
         .item(&item(app, "check-updates", "Check for Updates…", None)?)
         .item(&sep()?)
@@ -92,11 +90,11 @@ pub fn build(app: &AppHandle) -> tauri::Result<Menu<Wry>> {
         .item(&sep()?)
         .item(&PredefinedMenuItem::services(app, None)?)
         .item(&sep()?)
-        .item(&PredefinedMenuItem::hide(app, Some("Hide Spotless"))?)
+        .item(&PredefinedMenuItem::hide(app, Some("Hide Chladni"))?)
         .item(&PredefinedMenuItem::hide_others(app, None)?)
         .item(&PredefinedMenuItem::show_all(app, None)?)
         .item(&sep()?)
-        .item(&PredefinedMenuItem::quit(app, Some("Quit Spotless"))?)
+        .item(&PredefinedMenuItem::quit(app, Some("Quit Chladni"))?)
         .build()?;
 
     // stream: wave2. Spotify's File › Offline Mode: a check item on the downloads setting (the
@@ -169,16 +167,13 @@ pub fn build(app: &AppHandle) -> tauri::Result<Menu<Wry>> {
         .item(&PredefinedMenuItem::maximize(app, Some("Zoom"))?)
         .item(&sep()?)
         .item(&item(app, "mini-player", "Mini Player", Some("Alt+Cmd+M"))?)
-        .item(&item(app, "show-main", "Spotless", Some("Alt+Cmd+1"))?)
+        .item(&item(app, "show-main", "Chladni", Some("Alt+Cmd+1"))?)
         .item(&sep()?)
         .item(&PredefinedMenuItem::bring_all_to_front(app, None)?)
         .build()?;
 
     let help = SubmenuBuilder::new(app, "Help")
         .item(&item(app, "shortcuts", "Keyboard Shortcuts", Some("Cmd+/"))?)
-        .item(&sep()?)
-        .item(&item(app, "help-site", "Spotless Help", None)?)
-        .item(&item(app, "report-issue", "Report an Issue…", None)?)
         .build()?;
 
     let menu = Menu::with_items(app, &[&app_menu, &file, &edit, &view, &playback, &window, &help])?;
@@ -230,12 +225,6 @@ pub fn handle(app: &AppHandle, id: &str) {
         return;
     }
     match id {
-        "help-site" => {
-            let _ = crate::commands::open_browser(HELP_URL);
-        }
-        "report-issue" => {
-            let _ = crate::commands::open_browser(ISSUES_URL);
-        }
         "show-main" => crate::tray::show_main(app),
         // AppKit has already flipped the mark; the setting follows it (and emits
         // `downloads:network`, which the page's store and Settings listen to).
@@ -295,7 +284,7 @@ mod tests {
         assert!(UI_EVENTS.iter().all(|(id, _)| *id != super::OFFLINE_MODE));
     }
 
-    /// Spotless › Check for Updates… is the page's (Settings › About shows the outcome).
+    /// Chladni › Check for Updates… is the page's (Settings › About shows the outcome).
     #[test]
     fn check_for_updates_reaches_the_page() {
         assert!(UI_EVENTS.iter().any(|(id, _)| *id == "check-updates"));
